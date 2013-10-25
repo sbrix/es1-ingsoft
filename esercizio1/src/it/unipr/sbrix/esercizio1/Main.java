@@ -152,7 +152,6 @@ public class Main {
 		case 3: {
 			for (Cliente i : listaClienti) {
 				System.out.println(i.toString());
-				
 
 			}
 
@@ -239,7 +238,6 @@ public class Main {
 		case 3: {
 			for (Hotel i : listaHotel) {
 				System.out.println(i.toString());
-				
 
 			}
 
@@ -361,7 +359,7 @@ public class Main {
 			// System.out.println(nomeTemp+cognomeTemp);
 			for (Operatore i : listaOperatori) {
 				if (i.name.equals(nomeTemp) && i.cognome.equals(cognomeTemp)) {
-					listaClienti.remove(index);
+					listaOperatori.remove(index);
 					System.out.println("operatore rimosso");
 					saveToFile(fileOperatori, listaOperatori);
 					exit = true;
@@ -379,9 +377,7 @@ public class Main {
 		}
 		case 3: {
 			for (Operatore i : listaOperatori) {
-				System.out.println("nome:" + i.name);
-				System.out.println("cognome:" + i.cognome);
-				System.out.println("id=" + i.id_personale);
+				System.out.println(i.toString());
 
 			}
 
@@ -420,7 +416,7 @@ public class Main {
 			int index = 0;
 			for (Hotel i : listaHotel) {
 				System.out.println(i.toString());
-				
+
 				System.out.println("hotel desiderato? y/n");
 				String var = consoleInput.nextLine();
 				index++;
@@ -429,13 +425,13 @@ public class Main {
 				}
 
 			}
-			prenotazione.hotel = listaHotel.get(index);
+			if (!listaHotel.isEmpty())
+				prenotazione.hotel = listaHotel.get(index);
 			index = 0;
 			System.out
 					.println("Scorrere lista volo di andata e inserire quello desiderato:");
 			for (Volo i : listaVoli) {
 				System.out.println(i.toString());
-				
 
 				System.out.println("volo desiderato? y/n");
 				String var = consoleInput.nextLine();
@@ -445,13 +441,13 @@ public class Main {
 				}
 
 			}
-			prenotazione.andata = listaVoli.get(index);
+			if (!listaVoli.isEmpty())
+				prenotazione.andata = listaVoli.get(index);
 			index = 0;
 			System.out
 					.println("Scorrere lista volo di ritorno e inserire quello desiderato:");
 			for (Volo i : listaVoli) {
 				System.out.println(i.toString());
-				
 
 				System.out.println("volo desiderato? y/n");
 				String var = consoleInput.nextLine();
@@ -461,7 +457,8 @@ public class Main {
 				}
 
 			}
-			prenotazione.ritorno = listaVoli.get(index);
+			if (!listaVoli.isEmpty())
+				prenotazione.ritorno = listaVoli.get(index);
 			System.out.println("Durata pernottamento:");
 			prenotazione.giorniPernottamento = Integer.getInteger(consoleInput
 					.nextLine());
@@ -476,7 +473,6 @@ public class Main {
 			index = 0;
 			for (Cliente i : listaClienti) {
 				System.out.println(i.toString());
-				
 
 				System.out.println("cliente desiderato? y/n");
 				String var = consoleInput.nextLine();
@@ -487,7 +483,8 @@ public class Main {
 
 			}
 			prenotazione.id = idGlobalePrenotazioni++;
-			prenotazione.cliente = listaClienti.get(index);
+			if (!listaClienti.isEmpty())
+				prenotazione.cliente = listaClienti.get(index);
 			System.out.println("Inserire id operatore:");
 			int id = Integer.valueOf(consoleInput.nextLine());
 			index = 0;
@@ -496,7 +493,8 @@ public class Main {
 					break;
 				index++;
 			}
-			prenotazione.operatore = listaOperatori.get(index);
+			if (!listaOperatori.isEmpty())
+				prenotazione.operatore = listaOperatori.get(index);
 			prenotazione.id = idGlobalePrenotazioni++;
 			listaPrenotazioni.add(prenotazione);
 			saveToFile(filePrenotazioni, listaPrenotazioni);
@@ -512,7 +510,7 @@ public class Main {
 			int index = 0;
 			for (ViaggiOrganizzati i : listaViaggiOrganizzati) {
 				System.out.println(i.toString());
-				
+
 				System.out.println("viaggio desiderato? y/n");
 				String var = consoleInput.nextLine();
 
@@ -533,14 +531,13 @@ public class Main {
 			prenotazione.scadenza = (tempCal.getTimeInMillis());// data di
 																// creazione+30
 			// giorni in millis
-			//System.out.println("prima:" + prenotazione.scadenza);
+			// System.out.println("prima:" + prenotazione.scadenza);
 			// prenotazione.scadenza.add(Calendar.MONTH, 1);
 			prenotazione.scadenza += 2592000000L;
-			//System.out.println("dopo:" + prenotazione.scadenza);
+			// System.out.println("dopo:" + prenotazione.scadenza);
 			index = 0;
 			for (Cliente i : listaClienti) {
 				System.out.println(i.toString());
-				
 
 				System.out.println("cliente desiderato? y/n");
 				String var = consoleInput.nextLine();
@@ -552,7 +549,8 @@ public class Main {
 
 			}
 			prenotazione.id = idGlobalePrenotazioni++;
-			prenotazione.cliente = listaClienti.get(index);
+			if (!listaClienti.isEmpty())
+				prenotazione.cliente = listaClienti.get(index);
 
 			System.out.println("Inserire id operatore:");
 			int id = Integer.valueOf(consoleInput.nextLine());
@@ -562,7 +560,8 @@ public class Main {
 					break;
 				index++;
 			}
-			prenotazione.operatore = listaOperatori.get(index);
+			if (!listaOperatori.isEmpty())
+				prenotazione.operatore = listaOperatori.get(index);
 			prenotazione.id = idGlobalePrenotazioni++;
 			listaPrenotazioni.add(prenotazione);
 			saveToFile(filePrenotazioni, listaPrenotazioni);
@@ -576,7 +575,7 @@ public class Main {
 			for (Prenotazione i : listaPrenotazioni) {
 
 				System.out.println(i.toString());
-				
+
 			}
 			gestionePrenotazioni();
 			break;
@@ -609,15 +608,17 @@ public class Main {
 				index++;
 			}
 			Vendite vendita = new Vendite();
-			vendita.andata = listaPrenotazioni.get(index).andata;
-			vendita.cliente = listaPrenotazioni.get(index).cliente;
-			vendita.giorniPernottamento = listaPrenotazioni.get(index).giorniPernottamento;
-			vendita.hotel = listaPrenotazioni.get(index).hotel;
-			vendita.operatore = listaPrenotazioni.get(index).operatore;
-			vendita.ritorno = listaPrenotazioni.get(index).ritorno;
-			vendita.id = idGlobaleVendite++;
-			listaVendite.add(vendita);
-			listaPrenotazioni.remove(index);
+			if (!listaPrenotazioni.isEmpty()) {
+				vendita.andata = listaPrenotazioni.get(index).andata;
+				vendita.cliente = listaPrenotazioni.get(index).cliente;
+				vendita.giorniPernottamento = listaPrenotazioni.get(index).giorniPernottamento;
+				vendita.hotel = listaPrenotazioni.get(index).hotel;
+				vendita.operatore = listaPrenotazioni.get(index).operatore;
+				vendita.ritorno = listaPrenotazioni.get(index).ritorno;
+				vendita.id = idGlobaleVendite++;
+				listaVendite.add(vendita);
+				listaPrenotazioni.remove(index);
+			}
 			saveToFile(fileVendite, listaVendite);
 			saveToFile(filePrenotazioni, listaPrenotazioni);
 			saveToFile(fileIdVendite, idGlobaleVendite);
@@ -641,10 +642,11 @@ public class Main {
 		case 3: {
 			for (Vendite i : listaVendite) {
 				System.out.println(i.toString());
-				
-				gestioneVendite();
+
 				break;
 			}
+			gestioneVendite();
+			break;
 		}
 		case 4: {
 			gestioneMenu();
@@ -695,7 +697,6 @@ public class Main {
 					.println("Scorrere lista volo di andata e inserire quello desiderato:");
 			for (Volo i : listaVoli) {
 				System.out.println(i.toString());
-				
 
 				System.out.println("volo desiderato? y/n");
 				String var = consoleInput.nextLine();
@@ -717,7 +718,6 @@ public class Main {
 					.println("Scorrere lista volo di ritorno e inserire quello desiderato:");
 			for (Volo i : listaVoli) {
 				System.out.println(i.toString());
-				
 
 				System.out.println("volo desiderato? y/n");
 				String var = consoleInput.nextLine();
@@ -747,7 +747,7 @@ public class Main {
 			int index = 0;
 			for (ViaggiOrganizzati i : listaViaggiOrganizzati) {
 				System.out.println(i.toString());
-				
+
 				System.out.println("viaggio desiderato? y/n");
 				String var = consoleInput.nextLine();
 				index++;
@@ -765,7 +765,6 @@ public class Main {
 		case 3: {
 			for (ViaggiOrganizzati i : listaViaggiOrganizzati) {
 				System.out.println(i.toString());
-				
 
 			}
 
@@ -844,7 +843,6 @@ public class Main {
 		case 3: {
 			for (Volo i : listaVoli) {
 				System.out.println(i.toString());
-				
 
 			}
 
@@ -987,7 +985,7 @@ public class Main {
 		try {
 			objInputStream = new ObjectInputStream(idOperatoriIn);
 			idGlobaleOperatori = (int) objInputStream.readObject();
-			//System.out.println(idGlobaleOperatori);
+			// System.out.println(idGlobaleOperatori);
 			objInputStream.close();
 		} catch (EOFException e) {
 			idGlobaleOperatori = 0;
@@ -997,7 +995,7 @@ public class Main {
 		try {
 			objInputStream = new ObjectInputStream(idVenditeIn);
 			idGlobaleVendite = (int) objInputStream.readObject();
-			//System.out.println(idGlobaleVendite);
+			// System.out.println(idGlobaleVendite);
 			objInputStream.close();
 		} catch (EOFException e) {
 			idGlobaleVendite = 0;
@@ -1006,7 +1004,7 @@ public class Main {
 		try {
 			objInputStream = new ObjectInputStream(idPrenotazioniIn);
 			idGlobalePrenotazioni = (int) objInputStream.readObject();
-			//System.out.println(idGlobalePrenotazioni);
+			// System.out.println(idGlobalePrenotazioni);
 			objInputStream.close();
 		} catch (EOFException e) {
 			idGlobalePrenotazioni = 0;
