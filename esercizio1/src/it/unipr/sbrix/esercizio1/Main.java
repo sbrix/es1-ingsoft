@@ -11,6 +11,11 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Scanner;
 
+/**
+ * @author Luca Sbrissa
+ * Matricola 182736
+ * 
+ */
 public class Main {
 	// creazione liste gestione agenzia
 	static ArrayList<Cliente> listaClienti = new ArrayList<Cliente>(0);
