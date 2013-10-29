@@ -18,59 +18,59 @@ import java.util.Scanner;
  */
 public class Agenzia {
 	// creazione liste gestione agenzia
-	static ArrayList<Cliente> listaClienti = new ArrayList<Cliente>(0);
-	static ArrayList<Hotel> listaHotel = new ArrayList<Hotel>(0);
-	static ArrayList<Volo> listaVoli = new ArrayList<Volo>(0);
-	static ArrayList<Prenotazione> listaPrenotazioni = new ArrayList<Prenotazione>(
+	 static ArrayList<Cliente> listaClienti = new ArrayList<Cliente>(0);
+	 static ArrayList<Hotel> listaHotel = new ArrayList<Hotel>(0);
+	 static ArrayList<Volo> listaVoli = new ArrayList<Volo>(0);
+	 static ArrayList<Prenotazione> listaPrenotazioni = new ArrayList<Prenotazione>(
 			0);
-	static ArrayList<Vendite> listaVendite = new ArrayList<Vendite>(0);
-	static ArrayList<ViaggiOrganizzati> listaViaggiOrganizzati = new ArrayList<ViaggiOrganizzati>(
+	 static ArrayList<Vendite> listaVendite = new ArrayList<Vendite>(0);
+	 static ArrayList<ViaggiOrganizzati> listaViaggiOrganizzati = new ArrayList<ViaggiOrganizzati>(
 			0);
-	static ArrayList<Operatore> listaOperatori = new ArrayList<Operatore>(0);
+	 static ArrayList<Operatore> listaOperatori = new ArrayList<Operatore>(0);
 
 	// gestione input/output su file
-	static final String pathRoot = File.separator+"esercizio1"+File.separator+"data"+File.separator;
-	static final File rootDir = new File(pathRoot);
+	 static final String pathRoot = File.separator+"esercizio1"+File.separator+"data"+File.separator;
+	 final File rootDir = new File(pathRoot);
 
-	static int idGlobaleOperatori = 0;
-	static int idGlobalePrenotazioni = 0;
-	static int idGlobaleVendite = 0;
+	 static int idGlobaleOperatori = 0;
+	 static int idGlobalePrenotazioni = 0;
+	 static int idGlobaleVendite = 0;
 
-	static final File fileClienti = new File(pathRoot + "clienti.dat");
-	static final File fileHotel = new File(pathRoot + "hotel.dat");
-	static final File fileVoli = new File(pathRoot + "voli.dat");
-	static final File filePrenotazioni = new File(pathRoot + "prenotazioni.dat");
-	static final File fileVendite = new File(pathRoot + "vendite.dat");
-	static final File fileViaggiOrganizzati = new File(pathRoot + "viaggi.dat");
-	static final File fileIdOperatori = new File(pathRoot + "idOperatori.dat");
-	static final File fileOperatori = new File(pathRoot + "operatori.dat");
-	static final File fileIdPrenotazioni = new File(pathRoot
+	 final File fileClienti = new File(pathRoot + "clienti.dat");
+	 final File fileHotel = new File(pathRoot + "hotel.dat");
+	 final File fileVoli = new File(pathRoot + "voli.dat");
+	 final File filePrenotazioni = new File(pathRoot + "prenotazioni.dat");
+	 final File fileVendite = new File(pathRoot + "vendite.dat");
+	 final File fileViaggiOrganizzati = new File(pathRoot + "viaggi.dat");
+	 final File fileIdOperatori = new File(pathRoot + "idOperatori.dat");
+	 final File fileOperatori = new File(pathRoot + "operatori.dat");
+	 final File fileIdPrenotazioni = new File(pathRoot
 			+ "idPrenotazioni.dat");
-	static final File fileIdVendite = new File(pathRoot + "idVendite.dat");
+	 final File fileIdVendite = new File(pathRoot + "idVendite.dat");
 
-	static FileInputStream clientiIn = null;
-	static FileInputStream hotelIn = null;
-	static FileInputStream voliIn = null;
-	static FileInputStream prenotazioniIn = null;
-	static FileInputStream venditeIn = null;
-	static FileInputStream viaggiIn = null;
-	static FileInputStream idOperatoriIn = null;
-	static FileInputStream operatoriIn = null;
-	static FileInputStream idPrenotazioniIn = null;
-	static FileInputStream idVenditeIn = null;
+	 FileInputStream clientiIn = null;
+	 FileInputStream hotelIn = null;
+	 FileInputStream voliIn = null;
+	 FileInputStream prenotazioniIn = null;
+	 FileInputStream venditeIn = null;
+	 FileInputStream viaggiIn = null;
+	 FileInputStream idOperatoriIn = null;
+	 FileInputStream operatoriIn = null;
+	 FileInputStream idPrenotazioniIn = null;
+	 FileInputStream idVenditeIn = null;
 
-	static FileOutputStream clientiOut = null;
-	static FileOutputStream hotelOut = null;
-	static FileOutputStream voliOut = null;
-	static FileOutputStream prenotazioniOut = null;
-	static FileOutputStream venditeOut = null;
-	static FileOutputStream viaggiOut = null;
-	static FileOutputStream idOperatoriOut = null;
-	static FileOutputStream operatoriOut = null;
-	static FileOutputStream idPrenotazioniOut = null;
-	static FileOutputStream idVenditeOut = null;
+	 FileOutputStream clientiOut = null;
+	 FileOutputStream hotelOut = null;
+	 FileOutputStream voliOut = null;
+	 FileOutputStream prenotazioniOut = null;
+	 FileOutputStream venditeOut = null;
+	 FileOutputStream viaggiOut = null;
+	 FileOutputStream idOperatoriOut = null;
+	 FileOutputStream operatoriOut = null;
+	 FileOutputStream idPrenotazioniOut = null;
+	 FileOutputStream idVenditeOut = null;
 
-	static ObjectInputStream objInputStream = null;
+	 ObjectInputStream objInputStream = null;
 
 	// console per lettura input utente
 	Scanner consoleInput = new Scanner(System.in);
@@ -1023,7 +1023,7 @@ public class Agenzia {
 
 	}
 
-	/*public static void main(String[] args) throws IOException,
+	/*public  void main(String[] args) throws IOException,
 			ClassNotFoundException {
 		// TODO Auto-generated method stub
 
