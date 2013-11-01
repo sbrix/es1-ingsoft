@@ -13,7 +13,7 @@ public class ViaggiOrganizzati implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -3650137362366764777L;
-	int id;
+	
 	Volo andata,ritorno;
 	Hotel hotel;
 	int durataPernottamento;

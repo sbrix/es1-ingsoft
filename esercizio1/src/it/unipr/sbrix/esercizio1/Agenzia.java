@@ -12,7 +12,7 @@ import java.util.Calendar;
 import java.util.Scanner;
 
 /**
- * @author Luca Sbrissa Matricola 182736 Moreno Varoli Matricola ??????
+ * @author Luca Sbrissa Matricola 182736 ,Moreno Varoli Matricola ??????
  * 
  */
 public class Agenzia {
@@ -141,14 +141,14 @@ public class Agenzia {
 			 * // System.out.println(nomeTemp+cognomeTemp); for (Cliente i :
 			 * listaClienti) { if (i.nome.equals(nomeTemp) &&
 			 * i.cognome.equals(cognomeTemp)) { listaClienti.remove(index);
-			 * System.out.println("Cliente rimosso");  exit = true; break;
+			 * System.out.println("Cliente rimosso"); exit = true; break;
 			 * 
 			 * } if (exit) break; index++;
 			 * 
 			 * }
 			 */
 			removeItemFromList(listaClienti);
-			saveToFile(fileClienti,listaClienti);
+			saveToFile(fileClienti, listaClienti);
 			gestioneClienti();
 			break;
 
@@ -224,7 +224,7 @@ public class Agenzia {
 			 * listaHotel) { if (i.nome.equals(nomeTemp) &&
 			 * i.via.equals(viaTemp) && i.citta.equals(cittaTemp) &&
 			 * i.nazione.equals(nazioneTemp)) { listaHotel.remove(index);
-			 * System.out.println("Hotel rimosso");  exit = true; break;
+			 * System.out.println("Hotel rimosso"); exit = true; break;
 			 * 
 			 * } if (exit) break; index++;
 			 * 
@@ -324,9 +324,6 @@ public class Agenzia {
 
 	}
 
-	/**
-	 * 
-	 */
 	private void gestioneOperatori() {
 		// TODO Auto-generated method stub
 		System.out.println();
@@ -366,8 +363,7 @@ public class Agenzia {
 			 * // System.out.println(nomeTemp+cognomeTemp); for (Operatore i :
 			 * listaOperatori) { if (i.name.equals(nomeTemp) &&
 			 * i.cognome.equals(cognomeTemp)) { listaOperatori.remove(index);
-			 * System.out.println("operatore rimosso");
-			 *  exit = true; break;
+			 * System.out.println("operatore rimosso"); exit = true; break;
 			 * 
 			 * } if (exit) break; index++;
 			 * 
@@ -413,60 +409,67 @@ public class Agenzia {
 		System.out.println("3)Lista prenotazioni");
 		System.out.println("4)Torna al menu principale");
 		String caso = consoleInput.nextLine();
-		Prenotazione prenotazione = new Prenotazione();
+
 		caso = caso.trim();
 		switch (Integer.parseInt(caso)) {
 		case 1: {
-			System.out
-					.println("Scorrere lista hotel e inserire quello desiderato:");
-			int index = 0;
-			for (Hotel i : listaHotel) {
-				System.out.println(i.toString());
-
-				System.out.println("hotel desiderato? y/n");
-				String var = consoleInput.nextLine();
-				index++;
-				if (var.equals("y")) {
-					break;
-				}
-
+			// int index = 0;
+			/*
+			 * System.out
+			 * .println("Scorrere lista hotel e inserire quello desiderato:");
+			 * for (Hotel i : listaHotel) { System.out.println(i.toString());
+			 * 
+			 * System.out.println("hotel desiderato? y/n"); String var =
+			 * consoleInput.nextLine(); index++; if (var.equals("y")) { break; }
+			 * 
+			 * } if (!listaHotel.isEmpty()) prenotazione.hotel =
+			 * listaHotel.get(index); }
+			 */
+			Prenotazione prenotazione = new Prenotazione();
+			if (!listaHotel.isEmpty()) {
+				System.out.println("Selezionare hotel:");
+				while (prenotazione.hotel == null)
+					prenotazione.hotel = getItemFromList(listaHotel);
+			} else {
+				System.out.println("Lista vuota impossibile procedere");
+				gestionePrenotazioni();
 			}
-			if (!listaHotel.isEmpty())
-				prenotazione.hotel = listaHotel.get(index);
-			index = 0;
-			System.out
-					.println("Scorrere lista volo di andata e inserire quello desiderato:");
-			for (Volo i : listaVoli) {
-				System.out.println(i.toString());
 
-				System.out.println("volo desiderato? y/n");
-				String var = consoleInput.nextLine();
-				index++;
-				if (var.equals("y")) {
-					break;
-				}
+			/*
+			 * index = 0; System.out .println(
+			 * "Scorrere lista volo di andata e inserire quello desiderato:");
+			 * for (Volo i : listaVoli) { System.out.println(i.toString());
+			 * 
+			 * System.out.println("volo desiderato? y/n"); String var =
+			 * consoleInput.nextLine(); index++; if (var.equals("y")) { break; }
+			 * 
+			 * } if (!listaVoli.isEmpty()) prenotazione.andata =
+			 * listaVoli.get(index);
+			 */
+			if (!listaVoli.isEmpty()) {
+				System.out.println("Selezionare volo di andata:");
+				while (prenotazione.andata == null)
+					prenotazione.andata = getItemFromList(listaVoli);
+				System.out.println("Selezionare volo di ritorno");
+				while (prenotazione.ritorno == null)
+					prenotazione.ritorno = getItemFromList(listaVoli);
+			} else {
+				System.out.println("Lista vuota impossibile procedere");
+				gestionePrenotazioni();
+			}/*
+			 * index = 0; System.out .println(
+			 * "Scorrere lista volo di ritorno e inserire quello desiderato:");
+			 * for (Volo i : listaVoli) { System.out.println(i.toString());
+			 * 
+			 * System.out.println("volo desiderato? y/n"); String var =
+			 * consoleInput.nextLine(); index++; if (var.equals("y")) { break; }
+			 * 
+			 * } if (!listaVoli.isEmpty()) prenotazione.ritorno =
+			 * listaVoli.get(index);
+			 */
 
-			}
-			if (!listaVoli.isEmpty())
-				prenotazione.andata = listaVoli.get(index);
-			index = 0;
-			System.out
-					.println("Scorrere lista volo di ritorno e inserire quello desiderato:");
-			for (Volo i : listaVoli) {
-				System.out.println(i.toString());
-
-				System.out.println("volo desiderato? y/n");
-				String var = consoleInput.nextLine();
-				index++;
-				if (var.equals("y")) {
-					break;
-				}
-
-			}
-			if (!listaVoli.isEmpty())
-				prenotazione.ritorno = listaVoli.get(index);
 			System.out.println("Durata pernottamento:");
-			prenotazione.giorniPernottamento = Integer.getInteger(consoleInput
+			prenotazione.durataPernottamento = Integer.parseInt(consoleInput
 					.nextLine());
 
 			// prenotazione.scadenza = new GregorianCalendar();
@@ -476,31 +479,42 @@ public class Agenzia {
 																							// giorni
 																							// in
 																							// millis
-			index = 0;
-			for (Cliente i : listaClienti) {
-				System.out.println(i.toString());
+			/*
+			 * index = 0; for (Cliente i : listaClienti) {
+			 * System.out.println(i.toString());
+			 * 
+			 * System.out.println("cliente desiderato? y/n"); String var =
+			 * consoleInput.nextLine(); index++; if (var.equals("y")) { break; }
+			 * 
+			 * } prenotazione.id = idGlobalePrenotazioni++; if
+			 * (!listaClienti.isEmpty()) prenotazione.cliente =
+			 * listaClienti.get(index);
+			 */
 
-				System.out.println("cliente desiderato? y/n");
-				String var = consoleInput.nextLine();
-				index++;
-				if (var.equals("y")) {
-					break;
-				}
+			if (!listaClienti.isEmpty()) {
+				System.out.println("Selezionare cliente:");
+				while (prenotazione.cliente == null)
+					prenotazione.cliente = getItemFromList(listaClienti);
+			} else {
+				System.out.println("Lista vuota impossibile procedere");
+				gestionePrenotazioni();
+			}
+			/*
+			 * System.out.println("Inserire id operatore:"); int id =
+			 * Integer.valueOf(consoleInput.nextLine()); index = 0; for
+			 * (Operatore i : listaOperatori) { if (i.id_personale == id) break;
+			 * index++; } if (!listaOperatori.isEmpty()) prenotazione.operatore
+			 * = listaOperatori.get(index);
+			 */
+			if (!listaOperatori.isEmpty()) {
+				System.out.println("Selezionare operatore:");
+				while (prenotazione.operatore == null)
+					prenotazione.operatore = getItemFromList(listaOperatori);
+			} else {
+				System.out.println("Lista vuota impossibile procedere");
+				gestionePrenotazioni();
+			}
 
-			}
-			prenotazione.id = idGlobalePrenotazioni++;
-			if (!listaClienti.isEmpty())
-				prenotazione.cliente = listaClienti.get(index);
-			System.out.println("Inserire id operatore:");
-			int id = Integer.valueOf(consoleInput.nextLine());
-			index = 0;
-			for (Operatore i : listaOperatori) {
-				if (i.id_personale == id)
-					break;
-				index++;
-			}
-			if (!listaOperatori.isEmpty())
-				prenotazione.operatore = listaOperatori.get(index);
 			prenotazione.id = idGlobalePrenotazioni++;
 			listaPrenotazioni.add(prenotazione);
 			saveToFile(filePrenotazioni, listaPrenotazioni);
@@ -511,64 +525,90 @@ public class Agenzia {
 		}
 		case 2: {
 
-			System.out
-					.println("Scorrere lista viaggi per selezionare quello desiderato");
-			int index = 0;
-			for (ViaggiOrganizzati i : listaViaggiOrganizzati) {
-				System.out.println(i.toString());
-
-				System.out.println("viaggio desiderato? y/n");
-				String var = consoleInput.nextLine();
-
-				if (var.equals("y")) {
-					break;
-				}
-				index++;
-
-			}
-			prenotazione.andata = listaViaggiOrganizzati.get(index).andata;
-			prenotazione.ritorno = listaViaggiOrganizzati.get(index).ritorno;
-			prenotazione.hotel = listaViaggiOrganizzati.get(index).hotel;
-			prenotazione.giorniPernottamento = listaViaggiOrganizzati
-					.get(index).durataPernottamento;
+			/*
+			 * System.out
+			 * .println("Scorrere lista viaggi per selezionare quello desiderato"
+			 * ); int index = 0; for (ViaggiOrganizzati i :
+			 * listaViaggiOrganizzati) { System.out.println(i.toString());
+			 * 
+			 * System.out.println("viaggio desiderato? y/n"); String var =
+			 * consoleInput.nextLine();
+			 * 
+			 * if (var.equals("y")) { break; } index++;
+			 * 
+			 * } prenotazione.andata = listaViaggiOrganizzati.get(index).andata;
+			 * prenotazione.ritorno = listaViaggiOrganizzati.get(index).ritorno;
+			 * prenotazione.hotel = listaViaggiOrganizzati.get(index).hotel;
+			 * prenotazione.durataPernottamento = listaViaggiOrganizzati
+			 * .get(index).durataPernottamento;
+			 */
 
 			// prenotazione.scadenza = new GregorianCalendar();
-			Calendar tempCal = Calendar.getInstance();
-			prenotazione.scadenza = (tempCal.getTimeInMillis());// data di
-																// creazione+30
+			// Calendar tempCal = Calendar.getInstance();
+			// prenotazione.scadenza = (tempCal.getTimeInMillis());// data di
+			// creazione+30
 			// giorni in millis
 			// System.out.println("prima:" + prenotazione.scadenza);
 			// prenotazione.scadenza.add(Calendar.MONTH, 1);
-			prenotazione.scadenza += 2592000000L;
-			// System.out.println("dopo:" + prenotazione.scadenza);
-			index = 0;
-			for (Cliente i : listaClienti) {
-				System.out.println(i.toString());
+			Prenotazione prenotazione = new Prenotazione();
+			if (!listaViaggiOrganizzati.isEmpty()) {
+				System.out.println("Selezionare Viaggio Organizzato:");
+				while (prenotazione.hotel == null) {
+					ViaggiOrganizzati temp = getItemFromList(listaViaggiOrganizzati);
+					prenotazione.andata = temp.andata;
+					prenotazione.ritorno = temp.ritorno;
+					prenotazione.hotel = temp.hotel;
+					prenotazione.durataPernottamento = temp.durataPernottamento;
 
-				System.out.println("cliente desiderato? y/n");
-				String var = consoleInput.nextLine();
-
-				if (var.equals("y")) {
-					break;
 				}
-				index++;
-
+			} else {
+				System.out.println("Lista vuota impossibile procedere");
+				gestionePrenotazioni();
+			}
+			prenotazione.scadenza = Calendar.getInstance().getTimeInMillis() + 2592000000L;
+			;
+			// System.out.println("dopo:" + prenotazione.scadenza);
+			/*
+			 * index = 0; for (Cliente i : listaClienti) {
+			 * System.out.println(i.toString());
+			 * 
+			 * System.out.println("cliente desiderato? y/n"); String var =
+			 * consoleInput.nextLine();
+			 * 
+			 * if (var.equals("y")) { break; } index++;
+			 * 
+			 * }
+			 */
+			if (!listaClienti.isEmpty()) {
+				System.out.println("Selezionare cliente:");
+				while (prenotazione.cliente == null)
+					prenotazione.cliente = getItemFromList(listaClienti);
+			} else {
+				System.out.println("Lista vuota impossibile procedere");
+				gestionePrenotazioni();
 			}
 			prenotazione.id = idGlobalePrenotazioni++;
-			if (!listaClienti.isEmpty())
-				prenotazione.cliente = listaClienti.get(index);
+			/*
+			 * if (!listaClienti.isEmpty()) prenotazione.cliente =
+			 * listaClienti.get(index);
+			 */
 
-			System.out.println("Inserire id operatore:");
-			int id = Integer.valueOf(consoleInput.nextLine());
-			index = 0;
-			for (Operatore i : listaOperatori) {
-				if (i.id_personale == id)
-					break;
-				index++;
+			/*
+			 * System.out.println("Inserire id operatore:"); int id =
+			 * Integer.valueOf(consoleInput.nextLine()); index = 0; for
+			 * (Operatore i : listaOperatori) { if (i.id_personale == id) break;
+			 * index++; } if (!listaOperatori.isEmpty()) prenotazione.operatore
+			 * = listaOperatori.get(index); prenotazione.id =
+			 * idGlobalePrenotazioni++;
+			 */
+			if (!listaOperatori.isEmpty()) {
+				System.out.println("Selezionare operatore:");
+				while (prenotazione.operatore == null)
+					prenotazione.operatore = getItemFromList(listaOperatori);
+			} else {
+				System.out.println("Lista vuota impossibile procedere");
+				gestionePrenotazioni();
 			}
-			if (!listaOperatori.isEmpty())
-				prenotazione.operatore = listaOperatori.get(index);
-			prenotazione.id = idGlobalePrenotazioni++;
 			listaPrenotazioni.add(prenotazione);
 			saveToFile(filePrenotazioni, listaPrenotazioni);
 			saveToFile(fileIdPrenotazioni, idGlobalePrenotazioni);
@@ -578,11 +618,13 @@ public class Agenzia {
 		}
 		case 3: {
 
-			/*for (Prenotazione i : listaPrenotazioni) {
-
-				System.out.println(i.toString());
-
-			}*/
+			/*
+			 * for (Prenotazione i : listaPrenotazioni) {
+			 * 
+			 * System.out.println(i.toString());
+			 * 
+			 * }
+			 */
 			printList(listaPrenotazioni, new Prenotazione());
 			gestionePrenotazioni();
 			break;
@@ -606,53 +648,69 @@ public class Agenzia {
 		String caso = consoleInput.nextLine();
 		switch (Integer.valueOf(caso)) {
 		case 1: {
-			System.out.println("Inserire id prenotazione:");
-			int idCheck = Integer.valueOf(consoleInput.nextLine());
-			int index = 0;
-			for (Prenotazione i : listaPrenotazioni) {
-				if (i.id == idCheck)
-					break;
-				index++;
-			}
-			Vendite vendita = new Vendite();
 			if (!listaPrenotazioni.isEmpty()) {
-				vendita.andata = listaPrenotazioni.get(index).andata;
-				vendita.cliente = listaPrenotazioni.get(index).cliente;
-				vendita.giorniPernottamento = listaPrenotazioni.get(index).giorniPernottamento;
-				vendita.hotel = listaPrenotazioni.get(index).hotel;
-				vendita.operatore = listaPrenotazioni.get(index).operatore;
-				vendita.ritorno = listaPrenotazioni.get(index).ritorno;
-				vendita.id = idGlobaleVendite++;
-				listaVendite.add(vendita);
-				listaPrenotazioni.remove(index);
+				System.out.println("Inserire id prenotazione:");
+				int idCheck = Integer.parseInt(consoleInput.nextLine());
+				int index = 0;
+				try {
+					for (Prenotazione i : listaPrenotazioni) {
+						if (i.id == idCheck)
+							break;
+						index++;
+					}
+					Vendite vendita = new Vendite();
+
+					{
+						vendita.andata=listaPrenotazioni.get(index).andata;
+						vendita.cliente = listaPrenotazioni.get(index).cliente;
+						vendita.durataPernottamento = listaPrenotazioni
+								.get(index).durataPernottamento;
+						vendita.hotel = listaPrenotazioni.get(index).hotel;
+						vendita.operatore = listaPrenotazioni.get(index).operatore;
+						vendita.ritorno = listaPrenotazioni.get(index).ritorno;
+
+						vendita.id = idGlobaleVendite++;
+						listaVendite.add(vendita);
+						listaPrenotazioni.remove(index);
+					}
+
+					//gestioneVendite();
+				} catch (IndexOutOfBoundsException e) {
+					System.out.println("Prenotazione non valida");
+				}
+				saveToFile(fileVendite, listaVendite);
+				saveToFile(filePrenotazioni, listaPrenotazioni);
+				saveToFile(fileIdVendite, idGlobaleVendite);
+				gestioneVendite();
+				break;
+
 			}
-			saveToFile(fileVendite, listaVendite);
-			saveToFile(filePrenotazioni, listaPrenotazioni);
-			saveToFile(fileIdVendite, idGlobaleVendite);
-			gestioneVendite();
-			break;
+			
+			else {
+				System.out.println("Nessuna prenotazione presente");
+				gestioneVendite();
+				break;
+			}
 		}
 		case 2: {
-			/*System.out.println("Inserire id vendita da rimuovere:");
-			int temp = Integer.parseInt(consoleInput.nextLine());
-			int index = 0;
-			for (Vendite i : listaVendite) {
-				if (i.id == temp) {
-					listaVendite.remove(index);
-					break;
-				}
-			}*/
+			/*
+			 * System.out.println("Inserire id vendita da rimuovere:"); int temp
+			 * = Integer.parseInt(consoleInput.nextLine()); int index = 0; for
+			 * (Vendite i : listaVendite) { if (i.id == temp) {
+			 * listaVendite.remove(index); break; } }
+			 */
 			removeItemFromList(listaVendite);
 			saveToFile(fileVendite, listaVendite);
 			gestioneVendite();
 			break;
 		}
 		case 3: {
-			/*for (Vendite i : listaVendite) {
-				System.out.println(i.toString());
-
-				break;
-			}*/
+			/*
+			 * for (Vendite i : listaVendite) {
+			 * System.out.println(i.toString());
+			 * 
+			 * break; }
+			 */
 			printList(listaVendite, new Vendite());
 			gestioneVendite();
 			break;
@@ -676,71 +734,66 @@ public class Agenzia {
 		String caso = consoleInput.nextLine();
 
 		caso = caso.trim();
-		boolean trovato = false;
+		// boolean trovato = false;
 		switch (Integer.parseInt(caso)) {
 		case 1: {
 
 			ViaggiOrganizzati viaggio = new ViaggiOrganizzati();
-			System.out
-					.println("Scorrere lista hotel e inserire quello desiderato:");
-			int index = 0;
-			for (Hotel i : listaHotel) {
-				System.out.println(i.toString());
-				System.out.println("hotel desiderato? y/n");
-				String var = consoleInput.nextLine();
-
-				if (var.equals("y")) {
-					trovato = true;
-					break;
-				}
-				index++;
-
-			}
-			if (trovato)
-				viaggio.hotel = listaHotel.get(index);
-			else
+			/*
+			 * System.out
+			 * .println("Scorrere lista hotel e inserire quello desiderato:");
+			 * int index = 0; for (Hotel i : listaHotel) {
+			 * System.out.println(i.toString());
+			 * System.out.println("hotel desiderato? y/n"); String var =
+			 * consoleInput.nextLine();
+			 * 
+			 * if (var.equals("y")) { trovato = true; break; } index++;
+			 * 
+			 * } if (trovato) viaggio.hotel = listaHotel.get(index); else
+			 * gestioneViaggi();
+			 */
+			if (!listaHotel.isEmpty()) {
+				System.out.println("Selezionare hotel:");
+				while (viaggio.hotel == null)
+					viaggio.hotel = getItemFromList(listaHotel);
+			} else {
+				System.out.println("Lista vuota impossibile procedere");
 				gestioneViaggi();
-			index = 0;
-			trovato = false;
-			System.out
-					.println("Scorrere lista volo di andata e inserire quello desiderato:");
-			for (Volo i : listaVoli) {
-				System.out.println(i.toString());
-
-				System.out.println("volo desiderato? y/n");
-				String var = consoleInput.nextLine();
-
-				if (var.equals("y")) {
-					trovato = true;
-					break;
-				}
-				index++;
-
 			}
-			if (trovato)
-				viaggio.andata = listaVoli.get(index);
-			else
+			/*
+			 * index = 0; trovato = false; System.out .println(
+			 * "Scorrere lista volo di andata e inserire quello desiderato:");
+			 * for (Volo i : listaVoli) { System.out.println(i.toString());
+			 * 
+			 * System.out.println("volo desiderato? y/n"); String var =
+			 * consoleInput.nextLine();
+			 * 
+			 * if (var.equals("y")) { trovato = true; break; } index++;
+			 * 
+			 * } if (trovato) viaggio.andata = listaVoli.get(index); else
+			 * gestioneViaggi(); index = 0; trovato = false; System.out
+			 * .println(
+			 * "Scorrere lista volo di ritorno e inserire quello desiderato:");
+			 * for (Volo i : listaVoli) { System.out.println(i.toString());
+			 * 
+			 * System.out.println("volo desiderato? y/n"); String var =
+			 * consoleInput.nextLine();
+			 * 
+			 * if (var.equals("y")) { trovato = true; break; }
+			 * 
+			 * } if (trovato) viaggio.ritorno = listaVoli.get(index); else
+			 * gestioneViaggi();
+			 */
+			if (!listaVoli.isEmpty()) {
+				System.out.println("Selezionare volo andata:");
+				while (viaggio.andata == null)
+					viaggio.andata = getItemFromList(listaVoli);
+				while (viaggio.ritorno == null)
+					viaggio.ritorno = getItemFromList(listaVoli);
+			} else {
+				System.out.println("Lista vuota impossibile procedere");
 				gestioneViaggi();
-			index = 0;
-			trovato = false;
-			System.out
-					.println("Scorrere lista volo di ritorno e inserire quello desiderato:");
-			for (Volo i : listaVoli) {
-				System.out.println(i.toString());
-
-				System.out.println("volo desiderato? y/n");
-				String var = consoleInput.nextLine();
-
-				if (var.equals("y")) {
-					trovato = true;
-					break;
-				}
-
 			}
-			if (trovato)
-				viaggio.ritorno = listaVoli.get(index);
-			else
-				gestioneViaggi();
 			System.out.println("Durata pernottamento:");
 			viaggio.durataPernottamento = Integer.parseInt(consoleInput
 					.nextLine());
@@ -751,32 +804,32 @@ public class Agenzia {
 			break;
 		}
 		case 2: {
-			System.out
-					.println("Scorrere lista viaggi per rimuovere quello desiderato");
-			int index = 0;
-			for (ViaggiOrganizzati i : listaViaggiOrganizzati) {
-				System.out.println(i.toString());
-
-				System.out.println("viaggio desiderato? y/n");
-				String var = consoleInput.nextLine();
-				index++;
-				if (var.equals("y")) {
-					break;
-				}
-
-			}
-			listaViaggiOrganizzati.remove(index);
+			/*
+			 * System.out
+			 * .println("Scorrere lista viaggi per rimuovere quello desiderato"
+			 * ); int index = 0; for (ViaggiOrganizzati i :
+			 * listaViaggiOrganizzati) { System.out.println(i.toString());
+			 * 
+			 * System.out.println("viaggio desiderato? y/n"); String var =
+			 * consoleInput.nextLine(); index++; if (var.equals("y")) { break; }
+			 * 
+			 * } listaViaggiOrganizzati.remove(index);
+			 */
+			removeItemFromList(listaViaggiOrganizzati);
 			saveToFile(fileViaggiOrganizzati, listaViaggiOrganizzati);
 			gestioneViaggi();
 			break;
 
 		}
 		case 3: {
-			for (ViaggiOrganizzati i : listaViaggiOrganizzati) {
-				System.out.println(i.toString());
+			/*
+			 * for (ViaggiOrganizzati i : listaViaggiOrganizzati) {
+			 * System.out.println(i.toString());
+			 * 
+			 * }
+			 */
 
-			}
-
+			printList(listaViaggiOrganizzati, new ViaggiOrganizzati());
 			gestioneViaggi();
 			break;
 		}
@@ -821,40 +874,37 @@ public class Agenzia {
 			break;
 		}
 		case 2: {
-			String nomeTemp, cognomeTemp;
-			boolean exit = false;
-			System.out.println("Inserire partenza volo da rimuovere:");
-			nomeTemp = consoleInput.nextLine();
-			System.out.println("Inserire destinazione volo da rimuovere:");
-			cognomeTemp = consoleInput.nextLine();
-			int index = 0;
-
-			// System.out.println(nomeTemp+cognomeTemp);
-			for (Volo i : listaVoli) {
-				if (i.partenza.equals(nomeTemp)
-						&& i.destinazione.equals(cognomeTemp)) {
-					listaVoli.remove(index);
-					System.out.println("Volo rimosso");
-					saveToFile(fileVoli, listaVoli);
-					exit = true;
-					break;
-
-				}
-				if (exit)
-					break;
-				index++;
-
-			}
+			/*
+			 * String nomeTemp, cognomeTemp; boolean exit = false;
+			 * System.out.println("Inserire partenza volo da rimuovere:");
+			 * nomeTemp = consoleInput.nextLine();
+			 * System.out.println("Inserire destinazione volo da rimuovere:");
+			 * cognomeTemp = consoleInput.nextLine(); int index = 0;
+			 * 
+			 * // System.out.println(nomeTemp+cognomeTemp); for (Volo i :
+			 * listaVoli) { if (i.partenza.equals(nomeTemp) &&
+			 * i.destinazione.equals(cognomeTemp)) { listaVoli.remove(index);
+			 * System.out.println("Volo rimosso"); saveToFile(fileVoli,
+			 * listaVoli); exit = true; break;
+			 * 
+			 * } if (exit) break; index++;
+			 * 
+			 * }
+			 */
+			removeItemFromList(listaVoli);
+			saveToFile(fileVoli, listaVoli);
 			gestioneVoli();
 			break;
 
 		}
 		case 3: {
-			for (Volo i : listaVoli) {
-				System.out.println(i.toString());
+			/*
+			 * for (Volo i : listaVoli) { System.out.println(i.toString());
+			 * 
+			 * }
+			 */
 
-			}
-
+			printList(listaVoli, new Volo());
 			gestioneVoli();
 			break;
 		}
@@ -1062,8 +1112,10 @@ public class Agenzia {
 					lista.remove(index);
 					selected = true;
 				}
-				if (selected)
+				if (selected) {
+					System.out.println("Oggetto rimosso");
 					break;
+				}
 				index++;
 			}
 
@@ -1072,30 +1124,31 @@ public class Agenzia {
 					.println("Impossibile rimuovere oggetto da una lista vuota");
 	}
 
-	private <T> int getItemIndexFromList(ArrayList<T> lista, T tipo){
+	private <T> T getItemFromList(ArrayList<T> lista) {
 		int index = 0;
 		Boolean selected = false;
 		if (!lista.isEmpty()) {
-			System.out.println("Selezionare un "+tipo.getClass().getSimpleName()+" dalla lista:");
+			// System.out.println("Selezionare un "
+			// + tipo.getClass().getSimpleName() + " dalla lista:");
 			for (T i : lista) {
 				System.out.println(i.toString());
 				System.out.println("Selezionare questo oggetto? y/n");
 				if (consoleInput.nextLine().equals("y")) {
-					
+
 					selected = true;
 				}
 				if (selected)
-					break;
+					return lista.get(index);
 				index++;
 			}
 
-		} else{
-			System.out
-					.println("Nessun Elemento");
-			return -1;
-			}
-		return index;
+		} else {
+			// System.out.println("Nessun elemento selezionato ");
+			return null;
+		}
+		return null;
 	}
+
 	private Boolean saveToFile(File file, Object obj) {
 		try {
 			FileOutputStream outFile = new FileOutputStream(file);
