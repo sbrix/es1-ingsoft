@@ -12,65 +12,64 @@ import java.util.Calendar;
 import java.util.Scanner;
 
 /**
- * @author Luca Sbrissa
- * Matricola 182736
+ * @author Luca Sbrissa Matricola 182736 Moreno Varoli Matricola ??????
  * 
  */
 public class Agenzia {
 	// creazione liste gestione agenzia
-	 static ArrayList<Cliente> listaClienti = new ArrayList<Cliente>(0);
-	 static ArrayList<Hotel> listaHotel = new ArrayList<Hotel>(0);
-	 static ArrayList<Volo> listaVoli = new ArrayList<Volo>(0);
-	 static ArrayList<Prenotazione> listaPrenotazioni = new ArrayList<Prenotazione>(
+	static ArrayList<Cliente> listaClienti = new ArrayList<Cliente>(0);
+	static ArrayList<Hotel> listaHotel = new ArrayList<Hotel>(0);
+	static ArrayList<Volo> listaVoli = new ArrayList<Volo>(0);
+	static ArrayList<Prenotazione> listaPrenotazioni = new ArrayList<Prenotazione>(
 			0);
-	 static ArrayList<Vendite> listaVendite = new ArrayList<Vendite>(0);
-	 static ArrayList<ViaggiOrganizzati> listaViaggiOrganizzati = new ArrayList<ViaggiOrganizzati>(
+	static ArrayList<Vendite> listaVendite = new ArrayList<Vendite>(0);
+	static ArrayList<ViaggiOrganizzati> listaViaggiOrganizzati = new ArrayList<ViaggiOrganizzati>(
 			0);
-	 static ArrayList<Operatore> listaOperatori = new ArrayList<Operatore>(0);
+	static ArrayList<Operatore> listaOperatori = new ArrayList<Operatore>(0);
 
 	// gestione input/output su file
-	 static final String pathRoot = File.separator+"esercizio1"+File.separator+"data"+File.separator;
-	 final File rootDir = new File(pathRoot);
+	static final String pathRoot = File.separator + "esercizio1"
+			+ File.separator + "data" + File.separator;
+	final File rootDir = new File(pathRoot);
 
-	 static int idGlobaleOperatori = 0;
-	 static int idGlobalePrenotazioni = 0;
-	 static int idGlobaleVendite = 0;
+	static int idGlobaleOperatori = 0;
+	static int idGlobalePrenotazioni = 0;
+	static int idGlobaleVendite = 0;
 
-	 final File fileClienti = new File(pathRoot + "clienti.dat");
-	 final File fileHotel = new File(pathRoot + "hotel.dat");
-	 final File fileVoli = new File(pathRoot + "voli.dat");
-	 final File filePrenotazioni = new File(pathRoot + "prenotazioni.dat");
-	 final File fileVendite = new File(pathRoot + "vendite.dat");
-	 final File fileViaggiOrganizzati = new File(pathRoot + "viaggi.dat");
-	 final File fileIdOperatori = new File(pathRoot + "idOperatori.dat");
-	 final File fileOperatori = new File(pathRoot + "operatori.dat");
-	 final File fileIdPrenotazioni = new File(pathRoot
-			+ "idPrenotazioni.dat");
-	 final File fileIdVendite = new File(pathRoot + "idVendite.dat");
+	final File fileClienti = new File(pathRoot + "clienti.dat");
+	final File fileHotel = new File(pathRoot + "hotel.dat");
+	final File fileVoli = new File(pathRoot + "voli.dat");
+	final File filePrenotazioni = new File(pathRoot + "prenotazioni.dat");
+	final File fileVendite = new File(pathRoot + "vendite.dat");
+	final File fileViaggiOrganizzati = new File(pathRoot + "viaggi.dat");
+	final File fileIdOperatori = new File(pathRoot + "idOperatori.dat");
+	final File fileOperatori = new File(pathRoot + "operatori.dat");
+	final File fileIdPrenotazioni = new File(pathRoot + "idPrenotazioni.dat");
+	final File fileIdVendite = new File(pathRoot + "idVendite.dat");
 
-	 FileInputStream clientiIn = null;
-	 FileInputStream hotelIn = null;
-	 FileInputStream voliIn = null;
-	 FileInputStream prenotazioniIn = null;
-	 FileInputStream venditeIn = null;
-	 FileInputStream viaggiIn = null;
-	 FileInputStream idOperatoriIn = null;
-	 FileInputStream operatoriIn = null;
-	 FileInputStream idPrenotazioniIn = null;
-	 FileInputStream idVenditeIn = null;
+	FileInputStream clientiIn = null;
+	FileInputStream hotelIn = null;
+	FileInputStream voliIn = null;
+	FileInputStream prenotazioniIn = null;
+	FileInputStream venditeIn = null;
+	FileInputStream viaggiIn = null;
+	FileInputStream idOperatoriIn = null;
+	FileInputStream operatoriIn = null;
+	FileInputStream idPrenotazioniIn = null;
+	FileInputStream idVenditeIn = null;
 
-	 FileOutputStream clientiOut = null;
-	 FileOutputStream hotelOut = null;
-	 FileOutputStream voliOut = null;
-	 FileOutputStream prenotazioniOut = null;
-	 FileOutputStream venditeOut = null;
-	 FileOutputStream viaggiOut = null;
-	 FileOutputStream idOperatoriOut = null;
-	 FileOutputStream operatoriOut = null;
-	 FileOutputStream idPrenotazioniOut = null;
-	 FileOutputStream idVenditeOut = null;
+	FileOutputStream clientiOut = null;
+	FileOutputStream hotelOut = null;
+	FileOutputStream voliOut = null;
+	FileOutputStream prenotazioniOut = null;
+	FileOutputStream venditeOut = null;
+	FileOutputStream viaggiOut = null;
+	FileOutputStream idOperatoriOut = null;
+	FileOutputStream operatoriOut = null;
+	FileOutputStream idPrenotazioniOut = null;
+	FileOutputStream idVenditeOut = null;
 
-	 ObjectInputStream objInputStream = null;
+	ObjectInputStream objInputStream = null;
 
 	// console per lettura input utente
 	Scanner consoleInput = new Scanner(System.in);
@@ -80,7 +79,7 @@ public class Agenzia {
 		// TODO Auto-generated constructor stub
 	}
 
-	void controllaScadenzaPrenotazioni() {
+	private void controllaScadenzaPrenotazioni() {
 
 		// Controllo scadenza prenotazioni
 		int indice = 0;
@@ -106,7 +105,7 @@ public class Agenzia {
 			controllaScadenzaPrenotazioni();
 	}
 
-	void gestioneClienti() {
+	private void gestioneClienti() {
 		System.out.println();
 		System.out.println("Menu gestione clienti:");
 		System.out.println("1)Aggiungi cliente");
@@ -132,38 +131,36 @@ public class Agenzia {
 			break;
 		}
 		case 2: {
-			String nomeTemp, cognomeTemp;
-			boolean exit = false;
-			System.out.println("Inserire nome cliente da rimuovere:");
-			nomeTemp = consoleInput.nextLine();
-			System.out.println("Inserire cognome cliente da rimuovere:");
-			cognomeTemp = consoleInput.nextLine();
-			int index = 0;
-
-			// System.out.println(nomeTemp+cognomeTemp);
-			for (Cliente i : listaClienti) {
-				if (i.nome.equals(nomeTemp) && i.cognome.equals(cognomeTemp)) {
-					listaClienti.remove(index);
-					System.out.println("Cliente rimosso");
-					saveToFile(fileClienti, listaClienti);
-					exit = true;
-					break;
-
-				}
-				if (exit)
-					break;
-				index++;
-
-			}
+			/*
+			 * String nomeTemp, cognomeTemp; boolean exit = false;
+			 * System.out.println("Inserire nome cliente da rimuovere:");
+			 * nomeTemp = consoleInput.nextLine();
+			 * System.out.println("Inserire cognome cliente da rimuovere:");
+			 * cognomeTemp = consoleInput.nextLine(); int index = 0;
+			 * 
+			 * // System.out.println(nomeTemp+cognomeTemp); for (Cliente i :
+			 * listaClienti) { if (i.nome.equals(nomeTemp) &&
+			 * i.cognome.equals(cognomeTemp)) { listaClienti.remove(index);
+			 * System.out.println("Cliente rimosso");  exit = true; break;
+			 * 
+			 * } if (exit) break; index++;
+			 * 
+			 * }
+			 */
+			removeItemFromList(listaClienti);
+			saveToFile(fileClienti,listaClienti);
 			gestioneClienti();
 			break;
 
 		}
 		case 3: {
-			for (Cliente i : listaClienti) {
-				System.out.println(i.toString());
-
-			}
+			/*
+			 * if (!listaClienti.isEmpty()) { for (Cliente i : listaClienti) {
+			 * System.out.println(i.toString());
+			 * 
+			 * } } else System.out.println("Lista Clienti vuota");
+			 */
+			printList(listaClienti, new Cliente());
 
 			gestioneClienti();
 			break;
@@ -182,7 +179,7 @@ public class Agenzia {
 		}
 	}
 
-	void gestioneHotel() {
+	private void gestioneHotel() {
 
 		System.out.println();
 		System.out.println("Menu gestione hotel:");
@@ -212,45 +209,42 @@ public class Agenzia {
 			break;
 		}
 		case 2: {
-			String nomeTemp, viaTemp, cittaTemp, nazioneTemp;
-			boolean exit = false;
-			System.out.println("Inserire nome Hotel:");
-			nomeTemp = consoleInput.nextLine();
-			System.out.println("Inserire via hotel da rimuovere:");
-			viaTemp = consoleInput.nextLine();
-			System.out.println("Inserire citta hotel da rimuovere:");
-			cittaTemp = consoleInput.nextLine();
-			System.out.println("Inserire nazione hotel da rimuovere:");
-			nazioneTemp = consoleInput.nextLine();
-			int index = 0;
-
-			// System.out.println(nomeTemp+cognomeTemp);
-			for (Hotel i : listaHotel) {
-				if (i.nome.equals(nomeTemp) && i.via.equals(viaTemp)
-						&& i.citta.equals(cittaTemp)
-						&& i.nazione.equals(nazioneTemp)) {
-					listaHotel.remove(index);
-					System.out.println("Hotel rimosso");
-					saveToFile(fileHotel, listaHotel);
-					exit = true;
-					break;
-
-				}
-				if (exit)
-					break;
-				index++;
-
-			}
+			/*
+			 * String nomeTemp, viaTemp, cittaTemp, nazioneTemp; boolean exit =
+			 * false; System.out.println("Inserire nome Hotel:"); nomeTemp =
+			 * consoleInput.nextLine();
+			 * System.out.println("Inserire via hotel da rimuovere:"); viaTemp =
+			 * consoleInput.nextLine();
+			 * System.out.println("Inserire citta hotel da rimuovere:");
+			 * cittaTemp = consoleInput.nextLine();
+			 * System.out.println("Inserire nazione hotel da rimuovere:");
+			 * nazioneTemp = consoleInput.nextLine(); int index = 0;
+			 * 
+			 * // System.out.println(nomeTemp+cognomeTemp); for (Hotel i :
+			 * listaHotel) { if (i.nome.equals(nomeTemp) &&
+			 * i.via.equals(viaTemp) && i.citta.equals(cittaTemp) &&
+			 * i.nazione.equals(nazioneTemp)) { listaHotel.remove(index);
+			 * System.out.println("Hotel rimosso");  exit = true; break;
+			 * 
+			 * } if (exit) break; index++;
+			 * 
+			 * }
+			 */
+			removeItemFromList(listaHotel);
+			saveToFile(fileHotel, listaHotel);
 			gestioneHotel();
 			break;
 
 		}
 		case 3: {
-			for (Hotel i : listaHotel) {
-				System.out.println(i.toString());
+			/*
+			 * if (!listaHotel.isEmpty()) { for (Hotel i : listaHotel) {
+			 * System.out.println(i.toString());
+			 * 
+			 * } } else System.out.println("Lista hotel vuota");
+			 */
 
-			}
-
+			printList(listaHotel, new Hotel());
 			gestioneHotel();
 			break;
 		}
@@ -283,7 +277,7 @@ public class Agenzia {
 		System.out.println("7)Gestione operatori:");
 		System.out.println("8)Esci dal programma");
 		System.out.println("Selezionare opzione:");
-
+		// printList(listaClienti, new Cliente());
 		String caso = consoleInput.nextLine();
 
 		// caso = caso.trim();
@@ -320,6 +314,7 @@ public class Agenzia {
 
 			break;
 		}
+
 		default: {
 			System.out.println("Selezionare opzione valida");
 			gestioneMenu();
@@ -329,7 +324,10 @@ public class Agenzia {
 
 	}
 
-	 void gestioneOperatori() {
+	/**
+	 * 
+	 */
+	private void gestioneOperatori() {
 		// TODO Auto-generated method stub
 		System.out.println();
 		System.out.println("Menu gestione operatori:");
@@ -358,39 +356,37 @@ public class Agenzia {
 			break;
 		}
 		case 2: {
-			String nomeTemp, cognomeTemp;
-			boolean exit = false;
-			System.out.println("Inserire nome operatore da rimuovere:");
-			nomeTemp = consoleInput.nextLine();
-			System.out.println("Inserire cognome operatore da rimuovere:");
-			cognomeTemp = consoleInput.nextLine();
-			int index = 0;
-
-			// System.out.println(nomeTemp+cognomeTemp);
-			for (Operatore i : listaOperatori) {
-				if (i.name.equals(nomeTemp) && i.cognome.equals(cognomeTemp)) {
-					listaOperatori.remove(index);
-					System.out.println("operatore rimosso");
-					saveToFile(fileOperatori, listaOperatori);
-					exit = true;
-					break;
-
-				}
-				if (exit)
-					break;
-				index++;
-
-			}
+			/*
+			 * String nomeTemp, cognomeTemp; boolean exit = false;
+			 * System.out.println("Inserire nome operatore da rimuovere:");
+			 * nomeTemp = consoleInput.nextLine();
+			 * System.out.println("Inserire cognome operatore da rimuovere:");
+			 * cognomeTemp = consoleInput.nextLine(); int index = 0;
+			 * 
+			 * // System.out.println(nomeTemp+cognomeTemp); for (Operatore i :
+			 * listaOperatori) { if (i.name.equals(nomeTemp) &&
+			 * i.cognome.equals(cognomeTemp)) { listaOperatori.remove(index);
+			 * System.out.println("operatore rimosso");
+			 *  exit = true; break;
+			 * 
+			 * } if (exit) break; index++;
+			 * 
+			 * }
+			 */
+			removeItemFromList(listaOperatori);
+			saveToFile(fileOperatori, listaOperatori);
 			gestioneOperatori();
 			break;
 
 		}
 		case 3: {
-			for (Operatore i : listaOperatori) {
-				System.out.println(i.toString());
-
-			}
-
+			/*
+			 * for (Operatore i : listaOperatori) {
+			 * System.out.println(i.toString());
+			 * 
+			 * }
+			 */
+			printList(listaOperatori, new Operatore());
 			gestioneOperatori();
 			break;
 		}
@@ -409,7 +405,7 @@ public class Agenzia {
 
 	}
 
-	void gestionePrenotazioni() {
+	private void gestionePrenotazioni() {
 		System.out.println("Menu gestione prenotazioni:");
 		System.out.println();
 		System.out.println("1)Inserire prenotazione personalizzata");
@@ -582,11 +578,12 @@ public class Agenzia {
 		}
 		case 3: {
 
-			for (Prenotazione i : listaPrenotazioni) {
+			/*for (Prenotazione i : listaPrenotazioni) {
 
 				System.out.println(i.toString());
 
-			}
+			}*/
+			printList(listaPrenotazioni, new Prenotazione());
 			gestionePrenotazioni();
 			break;
 
@@ -600,7 +597,7 @@ public class Agenzia {
 
 	}
 
-	void gestioneVendite() {
+	private void gestioneVendite() {
 		System.out.println("Menu gestione vendite:");
 		System.out.println("1)Aggiungi vendita");
 		System.out.println("2)Rimuovi vendita");
@@ -636,7 +633,7 @@ public class Agenzia {
 			break;
 		}
 		case 2: {
-			System.out.println("Inserire id vendita da rimuovere:");
+			/*System.out.println("Inserire id vendita da rimuovere:");
 			int temp = Integer.parseInt(consoleInput.nextLine());
 			int index = 0;
 			for (Vendite i : listaVendite) {
@@ -644,17 +641,19 @@ public class Agenzia {
 					listaVendite.remove(index);
 					break;
 				}
-			}
+			}*/
+			removeItemFromList(listaVendite);
 			saveToFile(fileVendite, listaVendite);
 			gestioneVendite();
 			break;
 		}
 		case 3: {
-			for (Vendite i : listaVendite) {
+			/*for (Vendite i : listaVendite) {
 				System.out.println(i.toString());
 
 				break;
-			}
+			}*/
+			printList(listaVendite, new Vendite());
 			gestioneVendite();
 			break;
 		}
@@ -665,7 +664,7 @@ public class Agenzia {
 		}
 	}
 
-	void gestioneViaggi() {
+	private void gestioneViaggi() {
 
 		System.out.println();
 		System.out.println("Menu gestione viaggi organizzati:");
@@ -795,7 +794,7 @@ public class Agenzia {
 		}
 	}
 
-	void gestioneVoli() {
+	private void gestioneVoli() {
 
 		System.out.println();
 		System.out.println("Menu gestione voli:");
@@ -1023,18 +1022,81 @@ public class Agenzia {
 
 	}
 
-	/*public  void main(String[] args) throws IOException,
-			ClassNotFoundException {
-		// TODO Auto-generated method stub
+	/*
+	 * public void main(String[] args) throws IOException,
+	 * ClassNotFoundException { // TODO Auto-generated method stub
+	 * 
+	 * initFiles();
+	 * 
+	 * gestioneMenu(); consoleInput.close();
+	 * 
+	 * }
+	 */
+	private <T> void printList(ArrayList<T> lista, T tipo) {
 
-		initFiles();
+		if (!lista.isEmpty()) {
 
-		gestioneMenu();
-		consoleInput.close();
+			for (T i : lista) {
 
-	}*/
+				System.out.println(i.toString());
+			}
 
-	Boolean saveToFile(File file, Object obj) {
+		}
+
+		else {
+
+			System.out.println("Lista " + tipo.getClass().getSimpleName()
+					+ " vuota");
+
+		}
+	}
+
+	private <T> void removeItemFromList(ArrayList<T> lista) {
+		int index = 0;
+		Boolean selected = false;
+		if (!lista.isEmpty()) {
+			for (T i : lista) {
+				System.out.println(i.toString());
+				System.out.println("Rimuovere questo oggetto? y/n");
+				if (consoleInput.nextLine().equals("y")) {
+					lista.remove(index);
+					selected = true;
+				}
+				if (selected)
+					break;
+				index++;
+			}
+
+		} else
+			System.out
+					.println("Impossibile rimuovere oggetto da una lista vuota");
+	}
+
+	private <T> int getItemIndexFromList(ArrayList<T> lista, T tipo){
+		int index = 0;
+		Boolean selected = false;
+		if (!lista.isEmpty()) {
+			System.out.println("Selezionare un "+tipo.getClass().getSimpleName()+" dalla lista:");
+			for (T i : lista) {
+				System.out.println(i.toString());
+				System.out.println("Selezionare questo oggetto? y/n");
+				if (consoleInput.nextLine().equals("y")) {
+					
+					selected = true;
+				}
+				if (selected)
+					break;
+				index++;
+			}
+
+		} else{
+			System.out
+					.println("Nessun Elemento");
+			return -1;
+			}
+		return index;
+	}
+	private Boolean saveToFile(File file, Object obj) {
 		try {
 			FileOutputStream outFile = new FileOutputStream(file);
 			ObjectOutputStream objOutputStream = new ObjectOutputStream(outFile);
