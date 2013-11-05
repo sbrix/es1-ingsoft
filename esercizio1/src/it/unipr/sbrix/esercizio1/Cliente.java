@@ -13,9 +13,13 @@ public class Cliente implements Serializable {
 	 */
 	private static final long serialVersionUID = 3705447070498719951L;
 	Cliente(){};
-	Cliente(String nm, String cg){
+	Cliente(String nm, String cg, String un, String pw){
+		
 		nome=nm;
 		cognome=cg;
+		userName=un;
+		password = Base64Service.encode(pw);
+		
 		
 	}
 	Integer id=null;
@@ -35,5 +39,7 @@ public class Cliente implements Serializable {
 	}*/
 	String nome=null;
 	String cognome=null;
+	String userName = null;
+	String password = null;
 
 }

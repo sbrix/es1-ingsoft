@@ -20,16 +20,14 @@ public class Agenzia {
 	static ArrayList<Cliente> listaClienti = new ArrayList<Cliente>(0);
 	static ArrayList<Hotel> listaHotel = new ArrayList<Hotel>(0);
 	static ArrayList<Volo> listaVoli = new ArrayList<Volo>(0);
-	static ArrayList<Prenotazione> listaPrenotazioni = new ArrayList<Prenotazione>(
-			0);
+	static ArrayList<Prenotazione> listaPrenotazioni = new ArrayList<Prenotazione>(0);
 	static ArrayList<Vendite> listaVendite = new ArrayList<Vendite>(0);
-	static ArrayList<ViaggiOrganizzati> listaViaggiOrganizzati = new ArrayList<ViaggiOrganizzati>(
-			0);
+	static ArrayList<ViaggiOrganizzati> listaViaggiOrganizzati = new ArrayList<ViaggiOrganizzati>(0);
 	static ArrayList<Operatore> listaOperatori = new ArrayList<Operatore>(0);
 
 	// gestione input/output su file
-	static final String pathRoot = File.separator + "esercizio1"
-			+ File.separator + "data" + File.separator;
+	static final String pathRoot = File.separator + "esercizio1" + File.separator + "data"
+			+ File.separator;
 	final File rootDir = new File(pathRoot);
 
 	static int idGlobaleOperatori = 0;
@@ -469,16 +467,15 @@ public class Agenzia {
 			 */
 
 			System.out.println("Durata pernottamento:");
-			prenotazione.durataPernottamento = Integer.parseInt(consoleInput
-					.nextLine());
+			prenotazione.durataPernottamento = Integer.parseInt(consoleInput.nextLine());
 
 			// prenotazione.scadenza = new GregorianCalendar();
 			prenotazione.scadenza = Calendar.getInstance().getTimeInMillis() + 2592000000L;// data
-																							// di
-																							// creazione+30
-																							// giorni
-																							// in
-																							// millis
+			// di
+			// creazione+30
+			// giorni
+			// in
+			// millis
 			/*
 			 * index = 0; for (Cliente i : listaClienti) {
 			 * System.out.println(i.toString());
@@ -641,7 +638,7 @@ public class Agenzia {
 
 	private void gestioneVendite() {
 		System.out.println("Menu gestione vendite:");
-		System.out.println("1)Aggiungi vendita");
+		System.out.println("1)Aggiungi vendita da prenotazione");		
 		System.out.println("2)Rimuovi vendita");
 		System.out.println("3)Lista vendite");
 		System.out.println("4)Torna al menu");
@@ -661,10 +658,9 @@ public class Agenzia {
 					Vendite vendita = new Vendite();
 
 					{
-						vendita.andata=listaPrenotazioni.get(index).andata;
+						vendita.andata = listaPrenotazioni.get(index).andata;
 						vendita.cliente = listaPrenotazioni.get(index).cliente;
-						vendita.durataPernottamento = listaPrenotazioni
-								.get(index).durataPernottamento;
+						vendita.durataPernottamento = listaPrenotazioni.get(index).durataPernottamento;
 						vendita.hotel = listaPrenotazioni.get(index).hotel;
 						vendita.operatore = listaPrenotazioni.get(index).operatore;
 						vendita.ritorno = listaPrenotazioni.get(index).ritorno;
@@ -674,7 +670,7 @@ public class Agenzia {
 						listaPrenotazioni.remove(index);
 					}
 
-					//gestioneVendite();
+					// gestioneVendite();
 				} catch (IndexOutOfBoundsException e) {
 					System.out.println("Prenotazione non valida");
 				}
@@ -685,7 +681,7 @@ public class Agenzia {
 				break;
 
 			}
-			
+
 			else {
 				System.out.println("Nessuna prenotazione presente");
 				gestioneVendite();
@@ -795,8 +791,7 @@ public class Agenzia {
 				gestioneViaggi();
 			}
 			System.out.println("Durata pernottamento:");
-			viaggio.durataPernottamento = Integer.parseInt(consoleInput
-					.nextLine());
+			viaggio.durataPernottamento = Integer.parseInt(consoleInput.nextLine());
 			listaViaggiOrganizzati.add(viaggio);
 			saveToFile(fileViaggiOrganizzati, listaViaggiOrganizzati);
 
@@ -1009,8 +1004,7 @@ public class Agenzia {
 
 		try {
 			objInputStream = new ObjectInputStream(prenotazioniIn);
-			listaPrenotazioni = (ArrayList<Prenotazione>) objInputStream
-					.readObject();
+			listaPrenotazioni = (ArrayList<Prenotazione>) objInputStream.readObject();
 			objInputStream.close();
 		} catch (EOFException e) {
 			System.out.println("file prenotazioni vuoto");
@@ -1018,8 +1012,7 @@ public class Agenzia {
 
 		try {
 			objInputStream = new ObjectInputStream(viaggiIn);
-			listaViaggiOrganizzati = (ArrayList<ViaggiOrganizzati>) objInputStream
-					.readObject();
+			listaViaggiOrganizzati = (ArrayList<ViaggiOrganizzati>) objInputStream.readObject();
 			objInputStream.close();
 		} catch (EOFException e) {
 			System.out.println("file viaggi organizzati vuoto");
@@ -1095,8 +1088,7 @@ public class Agenzia {
 
 		else {
 
-			System.out.println("Lista " + tipo.getClass().getSimpleName()
-					+ " vuota");
+			System.out.println("Lista " + tipo.getClass().getSimpleName() + " vuota");
 
 		}
 	}
@@ -1120,8 +1112,7 @@ public class Agenzia {
 			}
 
 		} else
-			System.out
-					.println("Impossibile rimuovere oggetto da una lista vuota");
+			System.out.println("Impossibile rimuovere oggetto da una lista vuota");
 	}
 
 	private <T> T getItemFromList(ArrayList<T> lista) {
