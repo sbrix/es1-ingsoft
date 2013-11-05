@@ -7,7 +7,6 @@ import java.security.*;
 public final class PasswordService {
 	public static String encrypt(String str) throws Exception{
 		MessageDigest md = null;
-		Base64Service base64 = new Base64Service();
 		try{
 			md =MessageDigest.getInstance("SHA");
 		}

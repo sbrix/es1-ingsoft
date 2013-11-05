@@ -1,16 +1,23 @@
 package it.unipr.sbrix.esercizio1;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
 import java.awt.GridBagLayout;
+
 import javax.swing.JLabel;
+
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.FlowLayout;
 
 public class VistaCliente extends JFrame {
 
@@ -19,19 +26,30 @@ public class VistaCliente extends JFrame {
 	 */
 	private static final long serialVersionUID = -1951610647929956881L;
 	private JPanel contentPane;
-	private int userId = -1;
+	protected int userId = -1;
+	protected int operatoreID = -1;
+	private Agenzia agenzia = null;
+	protected JPanel panelVista = new JPanel();
+	protected JLabel lblShowmode = new JLabel("showMode");
+	protected JLabel lblShowutente = new JLabel("showUtente");
+	protected JPanel panelOperazioni = new JPanel();
 
 	/**
 	 * Create the frame.
 	 */
-	public VistaCliente() {
+	public VistaCliente(int idCliente, Agenzia ag) {
+		this();
+		userId = idCliente;
+		agenzia = ag;
 	}
+	
+	
 
-	public VistaCliente(int id) {
-		userId = id;
+	public VistaCliente() {
+
 		setTitle("Agenzia");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 800, 600);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -49,7 +67,6 @@ public class VistaCliente extends JFrame {
 		gbc_lblModalit.gridy = 0;
 		contentPane.add(lblModalit, gbc_lblModalit);
 
-		JLabel lblShowmode = new JLabel("showMode");
 		GridBagConstraints gbc_lblShowmode = new GridBagConstraints();
 		gbc_lblShowmode.anchor = GridBagConstraints.WEST;
 		gbc_lblShowmode.insets = new Insets(0, 0, 5, 0);
@@ -64,7 +81,6 @@ public class VistaCliente extends JFrame {
 		gbc_lblUtente.gridy = 1;
 		contentPane.add(lblUtente, gbc_lblUtente);
 
-		JLabel lblShowutente = new JLabel("showUtente");
 		GridBagConstraints gbc_lblShowutente = new GridBagConstraints();
 		gbc_lblShowutente.anchor = GridBagConstraints.WEST;
 		gbc_lblShowutente.insets = new Insets(0, 0, 5, 0);
@@ -72,32 +88,45 @@ public class VistaCliente extends JFrame {
 		gbc_lblShowutente.gridy = 1;
 		contentPane.add(lblShowutente, gbc_lblShowutente);
 
-		JPanel panelOperazioni = new JPanel();
+		
 		GridBagConstraints gbc_panelOperazioni = new GridBagConstraints();
 		gbc_panelOperazioni.anchor = GridBagConstraints.NORTHWEST;
 		gbc_panelOperazioni.insets = new Insets(0, 0, 0, 5);
 		gbc_panelOperazioni.gridx = 0;
 		gbc_panelOperazioni.gridy = 2;
 		contentPane.add(panelOperazioni, gbc_panelOperazioni);
-		panelOperazioni.setLayout(new BoxLayout(panelOperazioni, BoxLayout.X_AXIS));
+		panelOperazioni.setLayout(new BoxLayout(panelOperazioni, BoxLayout.Y_AXIS));
 
 		JButton btnGestionePrenotazioni = new JButton("Gestione Prenotazioni");
 		btnGestionePrenotazioni.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				gestionePrenotazione(userId);
+				if (agenzia != null)
+					gestionePrenotazione(userId,operatoreID, agenzia);
+				else {
+					JOptionPane.showMessageDialog(null, new JLabel("Errore"));
+					System.exit(ERROR);
+
+				}
 			}
 		});
 		panelOperazioni.add(btnGestionePrenotazioni);
 
-		JPanel panelVista = new JPanel();
 		GridBagConstraints gbc_panelVista = new GridBagConstraints();
 		gbc_panelVista.fill = GridBagConstraints.BOTH;
 		gbc_panelVista.gridx = 1;
 		gbc_panelVista.gridy = 2;
+		FlowLayout flowLayout = (FlowLayout) panelVista.getLayout();
+		flowLayout.setAlignment(FlowLayout.RIGHT);
 		contentPane.add(panelVista, gbc_panelVista);
 	}
 
-	private void gestionePrenotazione(int id) {
+	private void gestionePrenotazione(int idCliente,int idOperatore, Agenzia ag) {
+		panelVista.removeAll();
+		panelVista.add(new VistaGestionePrenotazioni(idCliente,idOperatore, ag));
+		this.invalidate();
+		this.validate();
+		this.repaint();
+		
 
 	}
 

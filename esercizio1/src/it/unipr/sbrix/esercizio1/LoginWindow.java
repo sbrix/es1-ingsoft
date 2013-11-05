@@ -125,23 +125,28 @@ public class LoginWindow {
 					for (Cliente i : agenzia.listaClienti) {
 						if (i.userName.equals(name) && i.password.equals(Base64Service.encode(pwd))) {
 							// vai schermata clienti
+							VistaCliente frameCliente = new VistaCliente(i.id, agenzia);
 						}
 					}
 				} else if (!agenzia.listaOperatori.isEmpty()) {
 					for (Operatore i : agenzia.listaOperatori) {
 						if (i.userName.equals(name) && i.password.equals(Base64Service.encode(pwd))) {
 							// vai schermata operatore
-							VistaOperatori vistaOp = new VistaOperatori(agenzia);
-							vistaOp.setId(i.id_personale);
+							VistaOperatori vistaOp = new VistaOperatori(i.id_personale,agenzia);
+							
 							
 						}
 					}
 				} else {
 					if (name.equals("admin") && pwd.equals("admin")) {
-						VistaAdmin frameAdmin = new VistaAdmin(agenzia);
-						frameAdmin.init();
+						
+						VistaAdmin frameAdmin = new VistaAdmin(-2,agenzia);
+						
+						frameAdmin.setVisible(true);
 						frmLogin.setVisible(false);
-						// frame.repaint();
+						
+						
+						
 
 					} else {
 						JOptionPane.showMessageDialog(null, new JLabel(

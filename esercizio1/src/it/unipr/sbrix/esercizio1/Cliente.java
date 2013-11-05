@@ -22,7 +22,7 @@ public class Cliente implements Serializable {
 		
 		
 	}
-	Integer id=null;
+	int id=-1;
 	/*private String nome;
 	private String cognome;
 	void setNome(String var){
