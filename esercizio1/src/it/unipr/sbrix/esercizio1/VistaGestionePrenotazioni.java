@@ -9,7 +9,6 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.util.ArrayList;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 
@@ -31,6 +30,7 @@ public class VistaGestionePrenotazioni extends JPanel {
 	private JButton btnCompra = new JButton("Compra");
 	private JButton btnRimuovi = new JButton("Rimuovi");
 	private final JLabel lblGestionePrenotazioni = new JLabel("Gestione prenotazioni");
+	@SuppressWarnings("rawtypes")
 	private final JList list = new JList();
 
 	/**
@@ -38,7 +38,7 @@ public class VistaGestionePrenotazioni extends JPanel {
 	 */
 	public VistaGestionePrenotazioni(int idCliente, int idOp, Agenzia ag) {
 		System.out.println("Costruttore vista gestione prenotazione");
-		ArrayList<Integer> idPrenotazioni = new ArrayList<>(0);
+		//ArrayList<Integer> idPrenotazioni = new ArrayList<>(0);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] { 0, 0, 0 };
 		gridBagLayout.rowHeights = new int[] { 0, 0 };

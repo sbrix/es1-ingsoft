@@ -1,23 +1,31 @@
 package it.unipr.sbrix.esercizio1;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
 import java.awt.GridBagLayout;
+
 import javax.swing.JLabel;
+
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+
+import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class FrameAggiungiOperatore extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7286693484441790756L;
 	private JPanel contentPane;
 	private JTextField textFieldNome;
 	private JTextField textFieldCognome;
@@ -29,7 +37,7 @@ public class FrameAggiungiOperatore extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public FrameAggiungiOperatore(final Agenzia ag) {
+	public FrameAggiungiOperatore(final Agenzia ag, final JPanel panel, @SuppressWarnings("rawtypes") final JList list) {
 		setTitle("Aggiungi operatore");
 		setResizable(false);
 		setBounds(100, 100, 467, 174);
@@ -112,6 +120,7 @@ public class FrameAggiungiOperatore extends JFrame {
 		
 		JButton btnAggiungi = new JButton("Aggiungi");
 		btnAggiungi.addActionListener(new ActionListener() {
+			@SuppressWarnings("unchecked")
 			public void actionPerformed(ActionEvent arg0) {
 				//aggiungi dati alla lista operatori
 				Operatore op = new Operatore(textFieldNome.getText().trim(), textFieldCognome.getText().trim(), textFieldUsername.getText().trim(), new String(passwordField.getPassword()));
@@ -119,6 +128,11 @@ public class FrameAggiungiOperatore extends JFrame {
 				ag.listaOperatori.add(op);
 				ag.saveToFile(ag.fileIdOperatori, ag.idGlobaleOperatori);
 				ag.saveToFile(ag.fileOperatori, ag.listaOperatori);
+				list.setListData(ag.listaOperatori.toArray());
+				panel.revalidate();				
+				panel.repaint();				
+				JOptionPane.showMessageDialog(null, new JLabel("Utente inserito"));
+				setVisible(false);
 				
 				
 			}

@@ -17,22 +17,22 @@ import java.util.Scanner;
  */
 public class Agenzia {
 	// creazione liste gestione agenzia
-	static ArrayList<Cliente> listaClienti = new ArrayList<Cliente>(0);
-	static ArrayList<Hotel> listaHotel = new ArrayList<Hotel>(0);
-	static ArrayList<Volo> listaVoli = new ArrayList<Volo>(0);
-	static ArrayList<Prenotazione> listaPrenotazioni = new ArrayList<Prenotazione>(0);
-	static ArrayList<Vendite> listaVendite = new ArrayList<Vendite>(0);
-	static ArrayList<ViaggiOrganizzati> listaViaggiOrganizzati = new ArrayList<ViaggiOrganizzati>(0);
-	static ArrayList<Operatore> listaOperatori = new ArrayList<Operatore>(0);
+	ArrayList<Cliente> listaClienti = new ArrayList<Cliente>(0);
+	ArrayList<Hotel> listaHotel = new ArrayList<Hotel>(0);
+	ArrayList<Volo> listaVoli = new ArrayList<Volo>(0);
+	ArrayList<Prenotazione> listaPrenotazioni = new ArrayList<Prenotazione>(0);
+	ArrayList<Vendite> listaVendite = new ArrayList<Vendite>(0);
+	ArrayList<ViaggiOrganizzati> listaViaggiOrganizzati = new ArrayList<ViaggiOrganizzati>(0);
+	ArrayList<Operatore> listaOperatori = new ArrayList<Operatore>(0);
 
 	// gestione input/output su file
-	static final String pathRoot = File.separator + "esercizio1" + File.separator + "data"
+	final String pathRoot = File.separator + "esercizio1" + File.separator + "data"
 			+ File.separator;
 	final File rootDir = new File(pathRoot);
 
-	static int idGlobaleOperatori = 0;
-	static int idGlobalePrenotazioni = 0;
-	static int idGlobaleVendite = 0;
+	int idGlobaleOperatori = 0;
+	int idGlobalePrenotazioni = 0;
+	int idGlobaleVendite = 0;
 
 	final File fileClienti = new File(pathRoot + "clienti.dat");
 	final File fileHotel = new File(pathRoot + "hotel.dat");
@@ -638,7 +638,7 @@ public class Agenzia {
 
 	private void gestioneVendite() {
 		System.out.println("Menu gestione vendite:");
-		System.out.println("1)Aggiungi vendita da prenotazione");		
+		System.out.println("1)Aggiungi vendita da prenotazione");
 		System.out.println("2)Rimuovi vendita");
 		System.out.println("3)Lista vendite");
 		System.out.println("4)Torna al menu");

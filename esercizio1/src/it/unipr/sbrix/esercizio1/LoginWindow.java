@@ -56,10 +56,9 @@ public class LoginWindow {
 		initialize();
 	}
 
-	@SuppressWarnings("static-access")
 	private void initUser() {
 		// controllo se utente e cliente o operatore
-		System.out.println("gestione login");
+		//System.out.println("gestione login");
 		String name = new String(textFieldUsername.getText());
 		String pwd = new String(passwordField.getPassword());
 		boolean userFound = false;
@@ -174,7 +173,6 @@ public class LoginWindow {
 
 		JButton btnLogin = new JButton("Login");
 		btnLogin.addActionListener(new ActionListener() {
-			@SuppressWarnings("static-access")
 			public void actionPerformed(ActionEvent arg0) {
 				initUser();
 

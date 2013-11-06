@@ -12,6 +12,10 @@ import java.awt.event.ActionListener;
 
 public class VistaAdmin extends VistaOperatori {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8085052232171478200L;
 	private JPanel contentPane;
 	private Agenzia agenzia = null;
 
