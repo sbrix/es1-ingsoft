@@ -116,7 +116,7 @@ public class VistaCliente extends JFrame {
 		gbc_panelVista.gridx = 1;
 		gbc_panelVista.gridy = 2;
 		FlowLayout flowLayout = (FlowLayout) panelVista.getLayout();
-		flowLayout.setAlignment(FlowLayout.RIGHT);
+		flowLayout.setAlignment(FlowLayout.LEADING);
 		contentPane.add(panelVista, gbc_panelVista);
 	}
 

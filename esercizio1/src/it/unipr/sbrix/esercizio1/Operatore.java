@@ -7,7 +7,7 @@ public class Operatore implements Serializable {
 	@Override
 	public String toString() {
 		return "Operatore [name=" + name + ", cognome=" + cognome
-				+ ", id_personale=" + id_personale + "]";
+				+ ", id_personale=" + id_personale +", username="+userName+", password="+password + "]";
 	}
 	/**
 	 * 
@@ -24,7 +24,7 @@ public class Operatore implements Serializable {
 		name=a;
 		cognome=b;
 		userName= un;
-		password = Base64Service.encode(pwd);
+		password = pwd;
 		
 		
 	}

@@ -1140,7 +1140,7 @@ public class Agenzia {
 		return null;
 	}
 
-	private Boolean saveToFile(File file, Object obj) {
+	public Boolean saveToFile(File file, Object obj) {
 		try {
 			FileOutputStream outFile = new FileOutputStream(file);
 			ObjectOutputStream objOutputStream = new ObjectOutputStream(outFile);

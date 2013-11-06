@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import javax.swing.BoxLayout;
+import javax.swing.JLabel;
 
 //ArrayList<Integer> idPrenotazioni = new ArrayList<>(0);
 /*for (Prenotazione i : ag.listaPrenotazioni) {
@@ -26,10 +27,11 @@ public class VistaGestionePrenotazioni extends JPanel {
 	private static final long serialVersionUID = -5247151955150439392L;
 	private JPanel panelLista = new JPanel();
 	private JButton btnAggiungi = new JButton("Aggiungi");
-	private JList<Prenotazione> list = new JList<Prenotazione>();
 	private JPanel panelButtons = new JPanel();
 	private JButton btnCompra = new JButton("Compra");
 	private JButton btnRimuovi = new JButton("Rimuovi");
+	private final JLabel lblGestionePrenotazioni = new JLabel("Gestione prenotazioni");
+	private final JList list = new JList();
 
 	/**
 	 * Create the panel.
@@ -46,22 +48,15 @@ public class VistaGestionePrenotazioni extends JPanel {
 
 		GridBagConstraints gbc_panelLista = new GridBagConstraints();
 		gbc_panelLista.insets = new Insets(0, 0, 0, 5);
-		gbc_panelLista.fill = GridBagConstraints.BOTH;
+		gbc_panelLista.fill = GridBagConstraints.VERTICAL;
 		gbc_panelLista.gridx = 0;
 		gbc_panelLista.gridy = 0;
 		add(panelLista, gbc_panelLista);
-		GridBagLayout gbl_panelLista = new GridBagLayout();
-		gbl_panelLista.columnWidths = new int[] { 0, 0 };
-		gbl_panelLista.rowHeights = new int[] { 0, 0 };
-		gbl_panelLista.columnWeights = new double[] { 1.0, Double.MIN_VALUE };
-		gbl_panelLista.rowWeights = new double[] { 1.0, Double.MIN_VALUE };
-		panelLista.setLayout(gbl_panelLista);
-
-		GridBagConstraints gbc_list = new GridBagConstraints();
-		gbc_list.fill = GridBagConstraints.BOTH;
-		gbc_list.gridx = 0;
-		gbc_list.gridy = 0;
-		panelLista.add(list, gbc_list);
+		panelLista.setLayout(new BoxLayout(panelLista, BoxLayout.Y_AXIS));
+		
+		panelLista.add(lblGestionePrenotazioni);
+		
+		panelLista.add(list);
 
 		GridBagConstraints gbc_panelButtons = new GridBagConstraints();
 		gbc_panelButtons.fill = GridBagConstraints.HORIZONTAL;

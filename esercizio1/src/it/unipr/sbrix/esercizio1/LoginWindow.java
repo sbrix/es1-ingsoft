@@ -30,21 +30,13 @@ public class LoginWindow {
 	private JFrame frmLogin;
 	private JTextField textFieldUsername;
 	private JPasswordField passwordField;
-	private static Agenzia agenzia = null;
+	private Agenzia agenzia = null;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		try {
-			agenzia = new Agenzia();
-		} catch (ClassNotFoundException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -64,11 +56,72 @@ public class LoginWindow {
 		initialize();
 	}
 
+	@SuppressWarnings("static-access")
+	private void initUser() {
+		// controllo se utente e cliente o operatore
+		System.out.println("gestione login");
+		String name = new String(textFieldUsername.getText());
+		String pwd = new String(passwordField.getPassword());
+		boolean userFound = false;
+
+		if (!agenzia.listaClienti.isEmpty()) {
+			for (Cliente i : agenzia.listaClienti) {
+				if (i.userName.equals(name) && i.password.equals(Base64Service.encode(pwd))) {
+					// vai schermata clienti
+					userFound = true;
+					VistaCliente frameCliente = new VistaCliente(i.id, agenzia);
+					frameCliente.setVisible(true);
+					frmLogin.setVisible(false);
+
+				}
+			}
+		}
+		if (!agenzia.listaOperatori.isEmpty()) {
+			for (Operatore i : agenzia.listaOperatori) {
+				
+				//System.out.println(i.toString());
+				if (i.userName.equals(name.trim()) && i.password.equals(pwd.trim())) {
+					// vai schermata operatore
+					userFound = true;
+					VistaOperatori vistaOp = new VistaOperatori(i.id_personale, agenzia);
+					vistaOp.setVisible(true);
+					frmLogin.setVisible(false);
+
+				}
+			}
+		}
+
+		//System.out.println("inizio sezione admin");
+		if (name.equals("admin") && pwd.equals("admin")) {
+
+			userFound = true;
+			VistaAdmin frameAdmin = new VistaAdmin(-2, agenzia);
+			frameAdmin.setVisible(true);
+			frmLogin.setVisible(false);
+
+		}
+		if (!userFound) {
+			JOptionPane.showMessageDialog(null, new JLabel("Password o nome utente non valido"));
+			textFieldUsername.setText(null);
+			passwordField.setText(null);
+		}
+	}
+
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		try {
+			agenzia = new Agenzia();
+		} catch (ClassNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		frmLogin = new JFrame();
+		frmLogin.setResizable(false);
 		frmLogin.setTitle("Login");
 		frmLogin.setBounds(100, 100, 450, 120);
 		frmLogin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -107,6 +160,11 @@ public class LoginWindow {
 		frmLogin.getContentPane().add(lblPassword, gbc_lblPassword);
 
 		passwordField = new JPasswordField();
+		passwordField.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				initUser();
+			}
+		});
 		GridBagConstraints gbc_passwordField = new GridBagConstraints();
 		gbc_passwordField.insets = new Insets(0, 0, 5, 0);
 		gbc_passwordField.fill = GridBagConstraints.HORIZONTAL;
@@ -118,42 +176,8 @@ public class LoginWindow {
 		btnLogin.addActionListener(new ActionListener() {
 			@SuppressWarnings("static-access")
 			public void actionPerformed(ActionEvent arg0) {
-				// controllo se utente e cliente o operatore
-				String name = new String(textFieldUsername.getText());
-				String pwd = new String(passwordField.getPassword());
-				if (!agenzia.listaClienti.isEmpty()) {
-					for (Cliente i : agenzia.listaClienti) {
-						if (i.userName.equals(name) && i.password.equals(Base64Service.encode(pwd))) {
-							// vai schermata clienti
-							VistaCliente frameCliente = new VistaCliente(i.id, agenzia);
-							frameCliente.setVisible(true);
-							frmLogin.setVisible(false);
-						}
-					}
-				} else if (!agenzia.listaOperatori.isEmpty()) {
-					for (Operatore i : agenzia.listaOperatori) {
-						if (i.userName.equals(name) && i.password.equals(Base64Service.encode(pwd))) {
-							// vai schermata operatore
-							VistaOperatori vistaOp = new VistaOperatori(i.id_personale, agenzia);
-							vistaOp.setVisible(true);
-							frmLogin.setVisible(false);
+				initUser();
 
-						}
-					}
-				} else {
-					if (name.equals("admin") && pwd.equals("admin")) {
-
-						VistaAdmin frameAdmin = new VistaAdmin(-2, agenzia);
-						frameAdmin.setVisible(true);
-						frmLogin.setVisible(false);
-
-					} else {
-						JOptionPane.showMessageDialog(null, new JLabel(
-								"Password o nome utente non valido"));
-						textFieldUsername.setText(null);
-						passwordField.setText(null);
-					}
-				}
 			}
 
 		});
