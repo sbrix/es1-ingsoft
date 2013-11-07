@@ -21,7 +21,7 @@ public class Prenotazione extends ViaggiOrganizzati implements Serializable {
 	 */
 	private static final long serialVersionUID = -1530929609848261724L;
 	int id;
-	Cliente cliente;
+	Utente cliente;
 	Operatore operatore;
 	long scadenza;
 

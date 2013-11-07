@@ -36,9 +36,9 @@ public class VistaGestionePrenotazioni extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public VistaGestionePrenotazioni(int idCliente, int idOp, Agenzia ag) {
-		System.out.println("Costruttore vista gestione prenotazione");
-		//ArrayList<Integer> idPrenotazioni = new ArrayList<>(0);
+	public VistaGestionePrenotazioni(int uType, int id, Agenzia ag) {
+		// System.out.println("Costruttore vista gestione prenotazione");
+		// ArrayList<Integer> idPrenotazioni = new ArrayList<>(0);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] { 0, 0, 0 };
 		gridBagLayout.rowHeights = new int[] { 0, 0 };
@@ -53,9 +53,9 @@ public class VistaGestionePrenotazioni extends JPanel {
 		gbc_panelLista.gridy = 0;
 		add(panelLista, gbc_panelLista);
 		panelLista.setLayout(new BoxLayout(panelLista, BoxLayout.Y_AXIS));
-		
+
 		panelLista.add(lblGestionePrenotazioni);
-		
+
 		panelLista.add(list);
 
 		GridBagConstraints gbc_panelButtons = new GridBagConstraints();
@@ -77,19 +77,20 @@ public class VistaGestionePrenotazioni extends JPanel {
 				// rimuovi prenotazione
 			}
 		});
-		
-				panelButtons.add(btnAggiungi);
-				
-						btnAggiungi.addActionListener(new ActionListener() {
-							public void actionPerformed(ActionEvent e) {
-								// aggiungi prenotazione
-							}
-						});
+
+		panelButtons.add(btnAggiungi);
+
+		btnAggiungi.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// aggiungi prenotazione
+			}
+		});
 
 		panelButtons.add(btnRimuovi);
-		if (idOp == -1) {
+		if (uType != Utente.CLIENTE) {
 			System.out.println("debug rimozione pulsante aggiungi");
 			btnAggiungi.setVisible(false);
+			
 		}
 		this.invalidate();
 		this.validate();

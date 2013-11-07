@@ -26,7 +26,7 @@ public class VistaCliente extends JFrame {
 	 */
 	private static final long serialVersionUID = -1951610647929956881L;
 	private JPanel contentPane;
-	protected int userId = -1;
+	protected int userType = Utente.CLIENTE;
 	protected int operatoreID = -1;
 	private Agenzia agenzia = null;
 	protected JPanel panelVista = new JPanel();
@@ -37,9 +37,9 @@ public class VistaCliente extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public VistaCliente(int idCliente, Agenzia ag) {
+	public VistaCliente(int uType, Agenzia ag) {
 		this();
-		userId = idCliente;
+		userType = uType;
 		agenzia = ag;
 	}
 	
@@ -101,7 +101,7 @@ public class VistaCliente extends JFrame {
 		btnGestionePrenotazioni.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (agenzia != null)
-					gestionePrenotazione(userId,operatoreID, agenzia);
+					gestionePrenotazione(userType,operatoreID, agenzia);
 				else {
 					JOptionPane.showMessageDialog(null, new JLabel("Errore"));
 					System.exit(ERROR);

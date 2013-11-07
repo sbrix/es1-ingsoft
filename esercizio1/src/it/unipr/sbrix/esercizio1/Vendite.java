@@ -16,6 +16,6 @@ public class Vendite extends ViaggiOrganizzati implements Serializable {
 	 */
 	private static final long serialVersionUID = 2808661019581646478L;
 	int id;
-	Cliente cliente;
+	Utente cliente;
 	Operatore operatore;
 }

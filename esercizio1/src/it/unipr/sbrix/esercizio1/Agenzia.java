@@ -17,53 +17,53 @@ import java.util.Scanner;
  */
 public class Agenzia {
 	// creazione liste gestione agenzia
-	ArrayList<Cliente> listaClienti = new ArrayList<Cliente>(0);
+	ArrayList<Utente> listaUtenti = new ArrayList<Utente>(0);
 	ArrayList<Hotel> listaHotel = new ArrayList<Hotel>(0);
 	ArrayList<Volo> listaVoli = new ArrayList<Volo>(0);
 	ArrayList<Prenotazione> listaPrenotazioni = new ArrayList<Prenotazione>(0);
 	ArrayList<Vendite> listaVendite = new ArrayList<Vendite>(0);
 	ArrayList<ViaggiOrganizzati> listaViaggiOrganizzati = new ArrayList<ViaggiOrganizzati>(0);
-	ArrayList<Operatore> listaOperatori = new ArrayList<Operatore>(0);
+	//ArrayList<Operatore> listaOperatori = new ArrayList<Operatore>(0);
 
 	// gestione input/output su file
 	final String pathRoot = File.separator + "esercizio1" + File.separator + "data"
 			+ File.separator;
 	final File rootDir = new File(pathRoot);
 
-	int idGlobaleOperatori = 0;
+	int idGlobaleUtenti = 0;
 	int idGlobalePrenotazioni = 0;
 	int idGlobaleVendite = 0;
 
-	final File fileClienti = new File(pathRoot + "clienti.dat");
+	final File fileUtenti = new File(pathRoot + "utenti.dat");
 	final File fileHotel = new File(pathRoot + "hotel.dat");
 	final File fileVoli = new File(pathRoot + "voli.dat");
 	final File filePrenotazioni = new File(pathRoot + "prenotazioni.dat");
 	final File fileVendite = new File(pathRoot + "vendite.dat");
 	final File fileViaggiOrganizzati = new File(pathRoot + "viaggi.dat");
-	final File fileIdOperatori = new File(pathRoot + "idOperatori.dat");
-	final File fileOperatori = new File(pathRoot + "operatori.dat");
+	final File fileIdUtenti = new File(pathRoot + "idUtenti.dat");
+	//final File fileOperatori = new File(pathRoot + "operatori.dat");
 	final File fileIdPrenotazioni = new File(pathRoot + "idPrenotazioni.dat");
 	final File fileIdVendite = new File(pathRoot + "idVendite.dat");
 
-	FileInputStream clientiIn = null;
+	FileInputStream utentiIn = null;
 	FileInputStream hotelIn = null;
 	FileInputStream voliIn = null;
 	FileInputStream prenotazioniIn = null;
 	FileInputStream venditeIn = null;
 	FileInputStream viaggiIn = null;
-	FileInputStream idOperatoriIn = null;
-	FileInputStream operatoriIn = null;
+	FileInputStream idUtentiIn = null;
+	//FileInputStream operatoriIn = null;
 	FileInputStream idPrenotazioniIn = null;
 	FileInputStream idVenditeIn = null;
 
-	FileOutputStream clientiOut = null;
+	FileOutputStream utentiOut = null;
 	FileOutputStream hotelOut = null;
 	FileOutputStream voliOut = null;
 	FileOutputStream prenotazioniOut = null;
 	FileOutputStream venditeOut = null;
 	FileOutputStream viaggiOut = null;
-	FileOutputStream idOperatoriOut = null;
-	FileOutputStream operatoriOut = null;
+	FileOutputStream idUtentiOut = null;
+	//FileOutputStream operatoriOut = null;
 	FileOutputStream idPrenotazioniOut = null;
 	FileOutputStream idVenditeOut = null;
 
@@ -117,13 +117,13 @@ public class Agenzia {
 		switch (Integer.parseInt(caso)) {
 		case 1: {
 			System.out.println("Inserire nome cliente:");
-			Cliente cliente = new Cliente();
+			Utente cliente = new Utente();
 			cliente.nome = consoleInput.nextLine();
 			System.out.println("Inserire cognome cliente:");
 
 			cliente.cognome = consoleInput.nextLine();
-			listaClienti.add(cliente);
-			saveToFile(fileClienti, listaClienti);
+			listaUtenti.add(cliente);
+			saveToFile(fileUtenti, listaUtenti);
 
 			gestioneClienti();
 			break;
@@ -145,8 +145,8 @@ public class Agenzia {
 			 * 
 			 * }
 			 */
-			removeItemFromList(listaClienti);
-			saveToFile(fileClienti, listaClienti);
+			removeItemFromList(listaUtenti);
+			saveToFile(fileUtenti, listaUtenti);
 			gestioneClienti();
 			break;
 
@@ -158,7 +158,7 @@ public class Agenzia {
 			 * 
 			 * } } else System.out.println("Lista Clienti vuota");
 			 */
-			printList(listaClienti, new Cliente());
+			printList(listaUtenti, new Utente());
 
 			gestioneClienti();
 			break;
@@ -342,10 +342,10 @@ public class Agenzia {
 			System.out.println("Inserire cognome operatore:");
 
 			operatore.cognome = consoleInput.nextLine();
-			operatore.id_personale = idGlobaleOperatori++;
-			listaOperatori.add(operatore);
-			saveToFile(fileOperatori, listaOperatori);
-			saveToFile(fileIdOperatori, idGlobaleOperatori);
+			operatore.id_personale = idGlobaleUtenti++;
+			//listaOperatori.add(operatore);
+			//saveToFile(fileOperatori, listaOperatori);
+			//saveToFile(fileIdOperatori, idGlobaleUtenti);
 
 			gestioneOperatori();
 			break;
@@ -367,8 +367,8 @@ public class Agenzia {
 			 * 
 			 * }
 			 */
-			removeItemFromList(listaOperatori);
-			saveToFile(fileOperatori, listaOperatori);
+			//removeItemFromList(listaOperatori);
+			//saveToFile(fileOperatori, listaOperatori);
 			gestioneOperatori();
 			break;
 
@@ -380,7 +380,7 @@ public class Agenzia {
 			 * 
 			 * }
 			 */
-			printList(listaOperatori, new Operatore());
+			//printList(listaOperatori, new Operatore());
 			gestioneOperatori();
 			break;
 		}
@@ -488,10 +488,10 @@ public class Agenzia {
 			 * listaClienti.get(index);
 			 */
 
-			if (!listaClienti.isEmpty()) {
+			if (!listaUtenti.isEmpty()) {
 				System.out.println("Selezionare cliente:");
 				while (prenotazione.cliente == null)
-					prenotazione.cliente = getItemFromList(listaClienti);
+					prenotazione.cliente = getItemFromList(listaUtenti);
 			} else {
 				System.out.println("Lista vuota impossibile procedere");
 				gestionePrenotazioni();
@@ -503,14 +503,14 @@ public class Agenzia {
 			 * index++; } if (!listaOperatori.isEmpty()) prenotazione.operatore
 			 * = listaOperatori.get(index);
 			 */
-			if (!listaOperatori.isEmpty()) {
+			/*if (!listaOperatori.isEmpty()) {
 				System.out.println("Selezionare operatore:");
 				while (prenotazione.operatore == null)
 					prenotazione.operatore = getItemFromList(listaOperatori);
 			} else {
 				System.out.println("Lista vuota impossibile procedere");
 				gestionePrenotazioni();
-			}
+			}*/
 
 			prenotazione.id = idGlobalePrenotazioni++;
 			listaPrenotazioni.add(prenotazione);
@@ -576,10 +576,10 @@ public class Agenzia {
 			 * 
 			 * }
 			 */
-			if (!listaClienti.isEmpty()) {
+			if (!listaUtenti.isEmpty()) {
 				System.out.println("Selezionare cliente:");
 				while (prenotazione.cliente == null)
-					prenotazione.cliente = getItemFromList(listaClienti);
+					prenotazione.cliente = getItemFromList(listaUtenti);
 			} else {
 				System.out.println("Lista vuota impossibile procedere");
 				gestionePrenotazioni();
@@ -598,14 +598,14 @@ public class Agenzia {
 			 * = listaOperatori.get(index); prenotazione.id =
 			 * idGlobalePrenotazioni++;
 			 */
-			if (!listaOperatori.isEmpty()) {
+			/*if (!listaOperatori.isEmpty()) {
 				System.out.println("Selezionare operatore:");
 				while (prenotazione.operatore == null)
 					prenotazione.operatore = getItemFromList(listaOperatori);
 			} else {
 				System.out.println("Lista vuota impossibile procedere");
 				gestionePrenotazioni();
-			}
+			}*/
 			listaPrenotazioni.add(prenotazione);
 			saveToFile(filePrenotazioni, listaPrenotazioni);
 			saveToFile(fileIdPrenotazioni, idGlobalePrenotazioni);
@@ -920,9 +920,9 @@ public class Agenzia {
 	@SuppressWarnings("unchecked")
 	void initFiles() throws IOException, ClassNotFoundException {
 		rootDir.mkdirs();// creo la dir se non esiste
-		if (!fileClienti.exists()) {
+		if (!fileUtenti.exists()) {
 
-			fileClienti.createNewFile();
+			fileUtenti.createNewFile();
 
 		}
 		if (!fileHotel.exists()) {
@@ -946,14 +946,14 @@ public class Agenzia {
 			fileViaggiOrganizzati.createNewFile();
 		}
 
-		if (!fileIdOperatori.exists()) {
-			fileIdOperatori.createNewFile();
-			idGlobaleOperatori = 0;
+		if (!fileIdUtenti.exists()) {
+			fileIdUtenti.createNewFile();
+			idGlobaleUtenti = 0;
 		}
-		if (!fileOperatori.exists()) {
+		/*if (!fileOperatori.exists()) {
 
 			fileOperatori.createNewFile();
-		}
+		}*/
 
 		if (!fileIdPrenotazioni.exists()) {
 			idGlobalePrenotazioni = 0;
@@ -966,24 +966,31 @@ public class Agenzia {
 
 		}
 
-		clientiIn = new FileInputStream(fileClienti);
+		utentiIn = new FileInputStream(fileUtenti);
 		hotelIn = new FileInputStream(fileHotel);
 		voliIn = new FileInputStream(fileVoli);
 		prenotazioniIn = new FileInputStream(filePrenotazioni);
 		venditeIn = new FileInputStream(fileVendite);
 		viaggiIn = new FileInputStream(fileViaggiOrganizzati);
-		idOperatoriIn = new FileInputStream(fileIdOperatori);
-		operatoriIn = new FileInputStream(fileOperatori);
+		idUtentiIn = new FileInputStream(fileIdUtenti);
+		//operatoriIn = new FileInputStream(fileOperatori);
 		idPrenotazioniIn = new FileInputStream(fileIdPrenotazioni);
 		idVenditeIn = new FileInputStream(fileIdVendite);
 
 		// inizializzo liste da file
 		try {
-			objInputStream = new ObjectInputStream(clientiIn);
-			listaClienti = (ArrayList<Cliente>) objInputStream.readObject();
+			objInputStream = new ObjectInputStream(utentiIn);
+			listaUtenti = (ArrayList<Utente>) objInputStream.readObject();
 			objInputStream.close();
 		} catch (EOFException e) {
-			System.out.println("file clienti vuoto");
+			//System.out.println("file clienti vuoto");
+			//se lista vuota devo creare l accound admin di default
+			Utente admin = new Utente("admin", "admin", "admin", "admin", this);
+			admin.setUserType(Utente.ADMIN);
+			listaUtenti.add(admin);
+			this.saveToFile(fileUtenti, this.listaUtenti);
+			System.out.println("Utente admin creato");
+			
 		}
 
 		try {
@@ -1026,22 +1033,23 @@ public class Agenzia {
 			System.out.println("file vendite vuoto");
 		}
 
-		try {
+		/*try {
 			objInputStream = new ObjectInputStream(operatoriIn);
 			listaOperatori = (ArrayList<Operatore>) objInputStream.readObject();
 			objInputStream.close();
 		} catch (EOFException e) {
 			System.out.println("file operatori vuoto");
-		}
+		}*/
 
 		try {
-			objInputStream = new ObjectInputStream(idOperatoriIn);
-			idGlobaleOperatori = (int) objInputStream.readObject();
+			objInputStream = new ObjectInputStream(idUtentiIn);
+			idGlobaleUtenti = (int) objInputStream.readObject();
 			// System.out.println(idGlobaleOperatori);
 			objInputStream.close();
 		} catch (EOFException e) {
-			idGlobaleOperatori = 0;
-			System.out.println("file id operatore vuoto");
+			idGlobaleUtenti = 0;
+			this.saveToFile(fileIdUtenti, this.idGlobaleUtenti);
+			//System.out.println("file id operatore vuoto");
 		}
 
 		try {

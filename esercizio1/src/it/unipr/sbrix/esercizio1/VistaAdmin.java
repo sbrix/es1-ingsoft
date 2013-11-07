@@ -23,13 +23,7 @@ public class VistaAdmin extends VistaOperatori {
 	 * Create the frame.
 	 */
 	
-	/*public VistaAdmin(Agenzia ag){
-		super(ag);
-		lblShowmode.setText("Modalita Amministratore");
-		lblShowutente.setText("Admin");
-		agenzia = ag;
 	
-	}*/
 
 	public VistaAdmin(int id,Agenzia ag) {
 		super(id,ag);
@@ -38,12 +32,12 @@ public class VistaAdmin extends VistaOperatori {
 		agenzia = ag;
 		this.setId(-2);
 		
-		JButton btnGestioneOperatori = new JButton("Gestione Operatori");
+		JButton btnGestioneUtenti = new JButton("Gestione utenti");
 		GridBagConstraints gbc_btnGestioneOperatori = new GridBagConstraints();
 		gbc_btnGestioneOperatori.insets = new Insets(0, 0, 0, 5);
 		gbc_btnGestioneOperatori.gridx = 0;
 		gbc_btnGestioneOperatori.gridy = 2;
-		btnGestioneOperatori.addActionListener(new ActionListener() {
+		btnGestioneUtenti.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -61,13 +55,13 @@ public class VistaAdmin extends VistaOperatori {
 
 			
 		});
-		this.panelOperazioni.add(btnGestioneOperatori, gbc_btnGestioneOperatori);
+		this.panelOperazioni.add(btnGestioneUtenti, gbc_btnGestioneOperatori);
 	}
 	
 	private void gestioneOperatori(Agenzia agenzia) {
 		// TODO Auto-generated method stub
 		panelVista.removeAll();
-		panelVista.add(new VistaGestioneOperatori(agenzia));
+		panelVista.add(new VistaGestioneUtenti(agenzia));
 		this.invalidate();
 		this.validate();
 		this.repaint();

@@ -11,14 +11,17 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JLabel;
+import javax.swing.ListSelectionModel;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.ListSelectionEvent;
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
 
-public class VistaGestioneOperatori extends JPanel implements	ActionListener {
+public class VistaGestioneUtenti extends JPanel implements	ActionListener {
 
 	/**
 	 * 
@@ -31,13 +34,14 @@ public class VistaGestioneOperatori extends JPanel implements	ActionListener {
 	private JButton btnAggiungi = null;
 	private JButton btnRimuovi = null;
 	private Agenzia ag = null;
+	private final JScrollPane scrollPane = new JScrollPane();
 	// private JScrollPane scrollPane = null;
 
 	/**
 	 * Create the panel.
 	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public VistaGestioneOperatori(final Agenzia agenzia) {
+	public VistaGestioneUtenti(final Agenzia agenzia) {
 		ag=agenzia;
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] { 0, 0, 0 };
@@ -54,22 +58,26 @@ public class VistaGestioneOperatori extends JPanel implements	ActionListener {
 		add(panelList, gbc_panelList);
 		panelList.setLayout(new BoxLayout(panelList, BoxLayout.Y_AXIS));
 
-		JLabel lblGestioneOperatori = new JLabel("Gestione Operatori");
-		panelList.add(lblGestioneOperatori);
+		JLabel lblGestioneUtenti = new JLabel("Gestione Utenti");
+		panelList.add(lblGestioneUtenti);
+		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		
+		panelList.add(scrollPane);
+		
+				list = new JList(ag.listaUtenti.toArray());
+				scrollPane.setViewportView(list);
+				list.addListSelectionListener(new ListSelectionListener() {
+					public void valueChanged(ListSelectionEvent arg0) {
+						
+						panelList.invalidate();
+						panelList.validate();
+						panelList.repaint();
 
-		list = new JList(ag.listaOperatori.toArray());
-		list.addListSelectionListener(new ListSelectionListener() {
-			public void valueChanged(ListSelectionEvent arg0) {
-				
-				panelList.invalidate();
-				panelList.validate();
-				panelList.repaint();
-
-			}
-		});
-		list.setVisible(true);
-
-		panelList.add(list);
+					}
+				});
+				list.setVisible(true);
+		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
 		GridBagConstraints gbc_panelButtons = new GridBagConstraints();
 		gbc_panelButtons.anchor = GridBagConstraints.NORTH;
@@ -94,19 +102,19 @@ public class VistaGestioneOperatori extends JPanel implements	ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if (e.getSource() == btnAggiungi){
-			// aggiunta di un operatore alla lista operatori
-			JFrame frameAggiungiOp = new FrameAggiungiOperatore(this.ag,panelList, list);
+			// aggiunta di un utente alla lista utenti
+			JFrame frameAggiungiUser = new FrameAggiungiUtente(this.ag,panelList, list);
 			
-			frameAggiungiOp.setVisible(true);			
+			frameAggiungiUser.setVisible(true);			
 		}
 		if (e.getSource() == btnRimuovi){
 			//rimuovi elementi selezionati
 			int tmp=list.getSelectedIndex();
 			if (tmp!=-1) { 
 				System.out.println(tmp);
-				ag.listaOperatori.remove(tmp);
-				ag.saveToFile(ag.fileOperatori, ag.listaOperatori);
-				list.setListData(ag.listaOperatori.toArray());
+				ag.listaUtenti.remove(tmp);
+				ag.saveToFile(ag.fileUtenti, ag.listaUtenti);
+				list.setListData(ag.listaUtenti.toArray());
 				panelList.revalidate();
 				panelList.repaint();
 				
