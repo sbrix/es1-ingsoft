@@ -148,7 +148,7 @@ public class FrameAggiungiUtente extends JFrame {
 				// aggiungi dati alla lista utenti
 				Utente utente = new Utente(textFieldNome.getText().trim(), textFieldCognome
 						.getText().trim(), textFieldUsername.getText().trim(), new String(
-						passwordField.getPassword()), ag);
+						passwordField.getPassword()).trim(), ag);
 				switch (choiceUserType.getSelectedItem()) {
 				case "Cliente": {
 					utente.setUserType(Utente.CLIENTE);

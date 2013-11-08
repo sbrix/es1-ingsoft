@@ -25,9 +25,9 @@ public class VistaCliente extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = -1951610647929956881L;
-	private JPanel contentPane;
+	protected JPanel contentPane;
 	protected int userType = Utente.CLIENTE;
-	protected int operatoreID = -1;
+	protected int personalID = -1;
 	private Agenzia agenzia = null;
 	protected JPanel panelVista = new JPanel();
 	protected JLabel lblShowmode = new JLabel("showMode");
@@ -37,15 +37,11 @@ public class VistaCliente extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public VistaCliente(int uType, Agenzia ag) {
-		this();
+	public VistaCliente(int uType, int id, Agenzia ag) {
+
 		userType = uType;
 		agenzia = ag;
-	}
-	
-	
-
-	public VistaCliente() {
+		personalID = id;
 
 		setTitle("Agenzia");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -88,7 +84,6 @@ public class VistaCliente extends JFrame {
 		gbc_lblShowutente.gridy = 1;
 		contentPane.add(lblShowutente, gbc_lblShowutente);
 
-		
 		GridBagConstraints gbc_panelOperazioni = new GridBagConstraints();
 		gbc_panelOperazioni.anchor = GridBagConstraints.NORTHWEST;
 		gbc_panelOperazioni.insets = new Insets(0, 0, 0, 5);
@@ -101,7 +96,7 @@ public class VistaCliente extends JFrame {
 		btnGestionePrenotazioni.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (agenzia != null)
-					gestionePrenotazione(userType,operatoreID, agenzia);
+					gestionePrenotazione(userType, personalID, agenzia);
 				else {
 					JOptionPane.showMessageDialog(null, new JLabel("Errore"));
 					System.exit(ERROR);
@@ -120,13 +115,12 @@ public class VistaCliente extends JFrame {
 		contentPane.add(panelVista, gbc_panelVista);
 	}
 
-	private void gestionePrenotazione(int idCliente,int idOperatore, Agenzia ag) {
+	private void gestionePrenotazione(int idCliente, int idOperatore, Agenzia ag) {
 		panelVista.removeAll();
-		panelVista.add(new VistaGestionePrenotazioni(idCliente,idOperatore, ag));
+		panelVista.add(new VistaGestionePrenotazioni(idCliente, idOperatore, ag));
 		this.invalidate();
 		this.validate();
 		this.repaint();
-		
 
 	}
 

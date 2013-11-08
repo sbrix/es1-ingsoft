@@ -87,10 +87,10 @@ public class VistaGestionePrenotazioni extends JPanel {
 		});
 
 		panelButtons.add(btnRimuovi);
-		if (uType != Utente.CLIENTE) {
+		if (uType == Utente.CLIENTE) {
 			System.out.println("debug rimozione pulsante aggiungi");
 			btnAggiungi.setVisible(false);
-			
+
 		}
 		this.invalidate();
 		this.validate();

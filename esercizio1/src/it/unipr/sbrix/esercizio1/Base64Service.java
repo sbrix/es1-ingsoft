@@ -56,6 +56,4 @@ public class Base64Service {
 
 	}
 
-
-
 }

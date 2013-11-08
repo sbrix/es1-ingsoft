@@ -65,53 +65,37 @@ public class LoginWindow {
 
 		if (!agenzia.listaUtenti.isEmpty()) {
 			for (Utente i : agenzia.listaUtenti) {
-				if (i.userName.equals(name) && i.password.equals(pwd)) {
+				if (i.userName.equals(name)
+						&& agenzia.passwordEncryptor.checkPassword(pwd.trim(), i.password)) {
 					// vai schermata clienti
-					userFound = true;
+
 					switch (i.getUserType()) {
 					case Utente.CLIENTE: {
-						VistaCliente frameCliente = new VistaCliente(i.getUserType(), agenzia);
+						userFound = true;
+						VistaCliente frameCliente = new VistaCliente(i.getUserType(), i.getId(),
+								agenzia);
 						frameCliente.setVisible(true);
 						frmLogin.setVisible(false);
 						break;
 					}
-					case Utente.OPERATORE:{break;
-						
+					case Utente.OPERATORE: {
+						userFound = true;
+						break;
+
 					}
-					case Utente.ADMIN:{
-						userFound = true; 
-						VistaAdmin frameAdmin = new VistaAdmin(-2,agenzia);
-						frameAdmin.setVisible(true); 
+					case Utente.ADMIN: {
+						userFound = true;
+						VistaAdmin frameAdmin = new VistaAdmin(i.getUserType(), i.getId(), agenzia);
+						frameAdmin.setVisible(true);
 						frmLogin.setVisible(false);
-						
+
 					}
 					}
 
 				}
 			}
 		}
-		/*
-		 * if (!agenzia.listaOperatori.isEmpty()) { for (Operatore i :
-		 * agenzia.listaOperatori) {
-		 * 
-		 * //System.out.println(i.toString()); if
-		 * (i.userName.equals(name.trim()) && i.password.equals(pwd.trim())) {
-		 * // vai schermata operatore userFound = true; VistaOperatori vistaOp =
-		 * new VistaOperatori(i.id_personale, agenzia);
-		 * vistaOp.setVisible(true); frmLogin.setVisible(false);
-		 * 
-		 * } } }
-		 */
-
-		// System.out.println("inizio sezione admin");
-		/*
-		 * if (name.equals("admin") && pwd.equals("admin")) {
-		 * 
-		 * userFound = true; VistaAdmin frameAdmin = new VistaAdmin(-2,
-		 * agenzia); frameAdmin.setVisible(true); frmLogin.setVisible(false);
-		 * 
-		 * }
-		 */
+	
 		if (!userFound) {
 			JOptionPane.showMessageDialog(null, new JLabel("Password o nome utente non valido"));
 			textFieldUsername.setText(null);

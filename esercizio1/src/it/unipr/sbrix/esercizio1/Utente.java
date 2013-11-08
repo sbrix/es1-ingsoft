@@ -5,7 +5,8 @@ import java.io.Serializable;
 public class Utente implements Serializable {
 	@Override
 	public String toString() {
-		return "ID="+id+", Nome=" + nome + ", Cognome=" + cognome +", Username="+userName+ ", Tipo=" + userTypeToString();
+		return "ID=" + id + ", Nome=" + nome + ", Cognome=" + cognome + ", Username=" + userName
+				+ ", Tipo=" + userTypeToString();
 	}
 
 	public static final int ADMIN = 0;
@@ -21,7 +22,7 @@ public class Utente implements Serializable {
 		nome = nm;
 		cognome = cg;
 		userName = un;
-		password = pw;
+		password = ag.passwordEncryptor.encryptPassword(pw);
 		userType = Utente.CLIENTE;
 		id = ag.idGlobaleUtenti++;
 		ag.saveToFile(ag.fileIdUtenti, ag.idGlobaleUtenti);
@@ -59,7 +60,8 @@ public class Utente implements Serializable {
 		case ADMIN: {
 			return new String("Admin");
 		}
-		default: return null;
+		default:
+			return null;
 		}
 	}
 }
