@@ -5,6 +5,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
@@ -25,16 +26,24 @@ public class VistaAdmin extends VistaOperatore {
 
 	public VistaAdmin(int ut, int id, Agenzia ag) {
 		super(ut, id, ag);
-		lblShowmode.setText("Modalita Amministratore");
-		lblShowutente.setText("Admin");
+		lblShowmode.setText("Amministratore");
+		
+		JButton btnGestioneUtenti = new JButton("Gestione Utenti");
+		panelOperazioni.add(btnGestioneUtenti);
+		
+		
 		agenzia = ag;
-		this.setId(-2);
+		
 
-		JButton btnGestioneUtenti = new JButton("Gestione utenti");
-		GridBagConstraints gbc_btnGestioneOperatori = new GridBagConstraints();
-		gbc_btnGestioneOperatori.insets = new Insets(0, 0, 0, 5);
-		gbc_btnGestioneOperatori.gridx = 0;
-		gbc_btnGestioneOperatori.gridy = 2;
+		
+		
+		this.revalidate();
+		this.repaint();
+		GridBagConstraints gbc_btnGestioneUtenti = new GridBagConstraints();
+		gbc_btnGestioneUtenti.insets = new Insets(0, 0, 0, 5);
+		gbc_btnGestioneUtenti.gridx = 0;
+		gbc_btnGestioneUtenti.gridy = 2;
+		gbc_btnGestioneUtenti.fill=gbc_btnGestioneUtenti.HORIZONTAL;
 		btnGestioneUtenti.addActionListener(new ActionListener() {
 
 			@Override
@@ -52,7 +61,9 @@ public class VistaAdmin extends VistaOperatore {
 			}
 
 		});
-		this.panelOperazioni.add(btnGestioneUtenti, gbc_btnGestioneOperatori);
+		this.panelOperazioni.add(btnGestioneUtenti, gbc_btnGestioneUtenti);
+		this.panelOperazioni.revalidate();
+		this.panelOperazioni.repaint();
 	}
 
 	private void gestioneOperatori(Agenzia agenzia) {

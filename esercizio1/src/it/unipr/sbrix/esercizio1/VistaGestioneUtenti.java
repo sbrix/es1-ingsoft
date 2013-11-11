@@ -2,6 +2,7 @@ package it.unipr.sbrix.esercizio1;
 
 import javax.swing.JPanel;
 
+import java.awt.Dimension;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
@@ -20,6 +21,8 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
+
+import java.awt.GridLayout;
 
 public class VistaGestioneUtenti extends JPanel implements ActionListener {
 
@@ -45,10 +48,9 @@ public class VistaGestioneUtenti extends JPanel implements ActionListener {
 	public VistaGestioneUtenti(final Agenzia agenzia) {
 		ag = agenzia;
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[] { 0, 0, 0 };
-		gridBagLayout.rowHeights = new int[] { 0, 0 };
+		gridBagLayout.columnWidths = new int[] {780, 70, 0};
 		gridBagLayout.columnWeights = new double[] { 1.0, 0.0, Double.MIN_VALUE };
-		gridBagLayout.rowWeights = new double[] { 1.0, Double.MIN_VALUE };
+		gridBagLayout.rowWeights = new double[] { 1.0 };
 		setLayout(gridBagLayout);
 
 		GridBagConstraints gbc_panelList = new GridBagConstraints();
@@ -67,7 +69,9 @@ public class VistaGestioneUtenti extends JPanel implements ActionListener {
 		panelList.add(scrollPane);
 
 		list = new JList(ag.listaUtenti.toArray());
+		
 		scrollPane.setViewportView(list);
+		scrollPane.setMinimumSize(new Dimension(780,500));
 		list.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent arg0) {
 
@@ -86,10 +90,10 @@ public class VistaGestioneUtenti extends JPanel implements ActionListener {
 		gbc_panelButtons.gridx = 1;
 		gbc_panelButtons.gridy = 0;
 		add(panelButtons, gbc_panelButtons);
-		panelButtons.setLayout(new BoxLayout(panelButtons, BoxLayout.Y_AXIS));
 
 		btnAggiungi = new JButton("Aggiungi");
 		btnAggiungi.addActionListener(this);
+		panelButtons.setLayout(new GridLayout(10, 1, 0, 0));
 		panelButtons.add(btnAggiungi);
 
 		btnRimuovi = new JButton("Rimuovi");

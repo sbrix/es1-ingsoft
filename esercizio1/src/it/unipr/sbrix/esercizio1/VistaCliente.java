@@ -9,6 +9,7 @@ import java.awt.GridBagLayout;
 
 import javax.swing.JLabel;
 
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 
@@ -18,6 +19,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.FlowLayout;
+import java.awt.GridLayout;
 
 public class VistaCliente extends JFrame {
 
@@ -38,10 +40,20 @@ public class VistaCliente extends JFrame {
 	 * Create the frame.
 	 */
 	public VistaCliente(int uType, int id, Agenzia ag) {
+		setResizable(false);
 
 		userType = uType;
 		agenzia = ag;
 		personalID = id;
+		if (ag != null) {
+			for (Utente i : ag.listaUtenti) {
+				if (i.getId() == id) {
+					lblShowutente.setText(i.nome + " " + i.cognome);
+					break;
+				}
+			}
+		}
+		this.lblShowmode.setText("Utente");
 
 		setTitle("Agenzia");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -85,14 +97,15 @@ public class VistaCliente extends JFrame {
 		contentPane.add(lblShowutente, gbc_lblShowutente);
 
 		GridBagConstraints gbc_panelOperazioni = new GridBagConstraints();
-		gbc_panelOperazioni.anchor = GridBagConstraints.NORTHWEST;
+		gbc_panelOperazioni.fill = GridBagConstraints.HORIZONTAL;
+		gbc_panelOperazioni.anchor = GridBagConstraints.NORTH;
 		gbc_panelOperazioni.insets = new Insets(0, 0, 0, 5);
 		gbc_panelOperazioni.gridx = 0;
 		gbc_panelOperazioni.gridy = 2;
 		contentPane.add(panelOperazioni, gbc_panelOperazioni);
-		panelOperazioni.setLayout(new BoxLayout(panelOperazioni, BoxLayout.Y_AXIS));
 
 		JButton btnGestionePrenotazioni = new JButton("Gestione Prenotazioni");
+		btnGestionePrenotazioni.setPreferredSize(new Dimension(200, 100));
 		btnGestionePrenotazioni.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (agenzia != null)
@@ -104,20 +117,22 @@ public class VistaCliente extends JFrame {
 				}
 			}
 		});
+		panelOperazioni.setLayout(new GridLayout(10, 1, 0, 0));
 		panelOperazioni.add(btnGestionePrenotazioni);
 
 		GridBagConstraints gbc_panelVista = new GridBagConstraints();
 		gbc_panelVista.fill = GridBagConstraints.BOTH;
 		gbc_panelVista.gridx = 1;
 		gbc_panelVista.gridy = 2;
-		FlowLayout flowLayout = (FlowLayout) panelVista.getLayout();
-		flowLayout.setAlignment(FlowLayout.LEADING);
+		panelVista.removeAll();
+		panelVista.setLayout(new GridLayout(0, 1, 0, 0));
+		panelVista.add(new VistaGestionePrenotazioni(uType, id, ag));
 		contentPane.add(panelVista, gbc_panelVista);
 	}
 
-	private void gestionePrenotazione(int idCliente, int idOperatore, Agenzia ag) {
+	private void gestionePrenotazione(int uType, int id, Agenzia ag) {
 		panelVista.removeAll();
-		panelVista.add(new VistaGestionePrenotazioni(idCliente, idOperatore, ag));
+		panelVista.add(new VistaGestionePrenotazioni(uType, id, ag));
 		this.invalidate();
 		this.validate();
 		this.repaint();

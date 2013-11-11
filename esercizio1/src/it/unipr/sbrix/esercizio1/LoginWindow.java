@@ -17,6 +17,7 @@ import java.awt.Insets;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
+import javax.swing.UIManager;
 
 import org.eclipse.wb.swing.FocusTraversalOnArray;
 
@@ -40,6 +41,7 @@ public class LoginWindow {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());                 
 					LoginWindow window = new LoginWindow();
 					window.frmLogin.setVisible(true);
 				} catch (Exception e) {
@@ -74,18 +76,24 @@ public class LoginWindow {
 						userFound = true;
 						VistaCliente frameCliente = new VistaCliente(i.getUserType(), i.getId(),
 								agenzia);
+						
 						frameCliente.setVisible(true);
 						frmLogin.setVisible(false);
 						break;
 					}
 					case Utente.OPERATORE: {
 						userFound = true;
+						VistaOperatore frameOp = new VistaOperatore(i.getUserType(), i.getId(), agenzia);
+						
+						frameOp.setVisible(true);
+						frmLogin.setVisible(false);
 						break;
 
 					}
 					case Utente.ADMIN: {
 						userFound = true;
 						VistaAdmin frameAdmin = new VistaAdmin(i.getUserType(), i.getId(), agenzia);
+						
 						frameAdmin.setVisible(true);
 						frmLogin.setVisible(false);
 

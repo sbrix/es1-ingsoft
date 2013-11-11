@@ -4,13 +4,20 @@ import javax.swing.JPanel;
 import javax.swing.JList;
 import javax.swing.JButton;
 
+import java.awt.Dimension;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.ListSelectionModel;
+
+import java.awt.GridLayout;
 
 //ArrayList<Integer> idPrenotazioni = new ArrayList<>(0);
 /*for (Prenotazione i : ag.listaPrenotazioni) {
@@ -32,44 +39,46 @@ public class VistaGestionePrenotazioni extends JPanel {
 	private final JLabel lblGestionePrenotazioni = new JLabel("Gestione prenotazioni");
 	@SuppressWarnings("rawtypes")
 	private final JList list = new JList();
+	private final JScrollPane scrollPane = new JScrollPane();
 
 	/**
 	 * Create the panel.
 	 */
 	public VistaGestionePrenotazioni(int uType, int id, Agenzia ag) {
-		// System.out.println("Costruttore vista gestione prenotazione");
-		// ArrayList<Integer> idPrenotazioni = new ArrayList<>(0);
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[] { 0, 0, 0 };
-		gridBagLayout.rowHeights = new int[] { 0, 0 };
+		gridBagLayout.columnWidths = new int[] {780, 70, 0};
 		gridBagLayout.columnWeights = new double[] { 1.0, 0.0, Double.MIN_VALUE };
-		gridBagLayout.rowWeights = new double[] { 1.0, Double.MIN_VALUE };
+		gridBagLayout.rowWeights = new double[] { 1.0 };
 		setLayout(gridBagLayout);
-
 		GridBagConstraints gbc_panelLista = new GridBagConstraints();
+		gbc_panelLista.fill = GridBagConstraints.BOTH;
 		gbc_panelLista.insets = new Insets(0, 0, 0, 5);
-		gbc_panelLista.fill = GridBagConstraints.VERTICAL;
 		gbc_panelLista.gridx = 0;
 		gbc_panelLista.gridy = 0;
 		add(panelLista, gbc_panelLista);
 		panelLista.setLayout(new BoxLayout(panelLista, BoxLayout.Y_AXIS));
 
 		panelLista.add(lblGestionePrenotazioni);
-
-		panelLista.add(list);
-
+		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPane.setMinimumSize(new Dimension(780,500));
+		scrollPane.setViewportView(list);
+		scrollPane.revalidate();
+		scrollPane.repaint();
+		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		panelLista.add(scrollPane);
+		
+		
 		GridBagConstraints gbc_panelButtons = new GridBagConstraints();
-		gbc_panelButtons.fill = GridBagConstraints.HORIZONTAL;
 		gbc_panelButtons.anchor = GridBagConstraints.NORTH;
 		gbc_panelButtons.gridx = 1;
 		gbc_panelButtons.gridy = 0;
 		add(panelButtons, gbc_panelButtons);
-		panelButtons.setLayout(new BoxLayout(panelButtons, BoxLayout.Y_AXIS));
 		btnCompra.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// trasforma prenotazione in vendita
 			}
 		});
+		panelButtons.setLayout(new GridLayout(10, 1, 0, 0));
 
 		panelButtons.add(btnCompra);
 		btnRimuovi.addActionListener(new ActionListener() {
@@ -78,6 +87,8 @@ public class VistaGestionePrenotazioni extends JPanel {
 			}
 		});
 
+		panelButtons.add(btnRimuovi);
+
 		panelButtons.add(btnAggiungi);
 
 		btnAggiungi.addActionListener(new ActionListener() {
@@ -85,8 +96,6 @@ public class VistaGestionePrenotazioni extends JPanel {
 				// aggiungi prenotazione
 			}
 		});
-
-		panelButtons.add(btnRimuovi);
 		if (uType == Utente.CLIENTE) {
 			System.out.println("debug rimozione pulsante aggiungi");
 			btnAggiungi.setVisible(false);
