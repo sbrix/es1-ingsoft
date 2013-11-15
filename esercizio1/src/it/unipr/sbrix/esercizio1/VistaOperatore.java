@@ -1,7 +1,6 @@
 package it.unipr.sbrix.esercizio1;
+
 import javax.swing.JButton;
-import javax.swing.SwingConstants;
-import java.awt.Component;
 
 public class VistaOperatore extends VistaCliente {
 
@@ -12,27 +11,25 @@ public class VistaOperatore extends VistaCliente {
 
 	public VistaOperatore(int userType, int idOperatore, Agenzia ag) {
 		super(userType, idOperatore, ag);
-		
+
 		JButton btnGestioneClienti = new JButton("Gestione Clienti");
 		panelOperazioni.add(btnGestioneClienti);
-		
+
 		JButton btnGestioneHotel = new JButton("Gestione Hotel");
 		panelOperazioni.add(btnGestioneHotel);
-		
+
 		JButton btnGestioneVoli = new JButton("Gestione Voli");
 		panelOperazioni.add(btnGestioneVoli);
-		
-		JButton btnGestioneViaggiOrganizzati = new JButton("Gestione Viaggi Organizzati");
+
+		JButton btnGestioneViaggiOrganizzati = new JButton(
+				"Gestione Viaggi Organizzati");
 		panelOperazioni.add(btnGestioneViaggiOrganizzati);
 		this.lblShowmode.setText("Operatore");
 		this.revalidate();
 		this.repaint();
-		
 
 		// TODO Auto-generated constructor stub
 
 	}
-
-	
 
 }

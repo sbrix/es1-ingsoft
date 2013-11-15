@@ -6,9 +6,10 @@ public class Vendite extends ViaggiOrganizzati implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Vendite [id=" + id + ", cliente=" + cliente.toString() + ", hotel="
-				+ hotel.toString() + ", giorniPernottamento=" + durataPernottamento + ", andata="
-				+ andata.toString() + ", ritorno=" + ritorno.toString() + ", operatore="
+		return "Vendite [id=" + id + ", cliente=" + cliente.toString()
+				+ ", hotel=" + hotel.toString() + ", giorniPernottamento="
+				+ durataPernottamento + ", andata=" + andata.toString()
+				+ ", ritorno=" + ritorno.toString() + ", operatore="
 				+ idOperatore + "]";
 	}
 

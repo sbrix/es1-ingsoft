@@ -5,9 +5,9 @@ import java.io.Serializable;
 public class ViaggiOrganizzati implements Serializable {
 	@Override
 	public String toString() {
-		return "ViaggiOrganizzati [andata=" + andata.toString() + ", ritorno=" + ritorno.toString()
-				+ ", hotel=" + hotel.toString() + ", durataPernottamento=" + durataPernottamento
-				+ "]";
+		return "ViaggiOrganizzati [andata=" + andata.toString() + ", ritorno="
+				+ ritorno.toString() + ", hotel=" + hotel.toString()
+				+ ", durataPernottamento=" + durataPernottamento + "]";
 	}
 
 	/**

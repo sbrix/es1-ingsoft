@@ -5,7 +5,8 @@ import java.io.Serializable;
 public class Volo implements Serializable {
 	@Override
 	public String toString() {
-		return "Volo [partenza=" + partenza + ", destinazione=" + destinazione + "]";
+		return "Volo [partenza=" + partenza + ", destinazione=" + destinazione
+				+ "]";
 	}
 
 	/**

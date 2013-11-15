@@ -36,7 +36,8 @@ public class VistaGestionePrenotazioni extends JPanel {
 	private JPanel panelButtons = new JPanel();
 	private JButton btnCompra = new JButton("Compra");
 	private JButton btnRimuovi = new JButton("Rimuovi");
-	private final JLabel lblGestionePrenotazioni = new JLabel("Gestione prenotazioni");
+	private final JLabel lblGestionePrenotazioni = new JLabel(
+			"Gestione prenotazioni");
 	@SuppressWarnings("rawtypes")
 	private final JList list = new JList();
 	private final JScrollPane scrollPane = new JScrollPane();
@@ -46,7 +47,7 @@ public class VistaGestionePrenotazioni extends JPanel {
 	 */
 	public VistaGestionePrenotazioni(int uType, int id, Agenzia ag) {
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[] {780, 70, 0};
+		gridBagLayout.columnWidths = new int[] { 780, 70, 0 };
 		gridBagLayout.columnWeights = new double[] { 1.0, 0.0, Double.MIN_VALUE };
 		gridBagLayout.rowWeights = new double[] { 1.0 };
 		setLayout(gridBagLayout);
@@ -59,15 +60,15 @@ public class VistaGestionePrenotazioni extends JPanel {
 		panelLista.setLayout(new BoxLayout(panelLista, BoxLayout.Y_AXIS));
 
 		panelLista.add(lblGestionePrenotazioni);
-		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		scrollPane.setMinimumSize(new Dimension(780,500));
+		scrollPane
+				.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPane.setMinimumSize(new Dimension(780, 500));
 		scrollPane.setViewportView(list);
 		scrollPane.revalidate();
 		scrollPane.repaint();
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		panelLista.add(scrollPane);
-		
-		
+
 		GridBagConstraints gbc_panelButtons = new GridBagConstraints();
 		gbc_panelButtons.anchor = GridBagConstraints.NORTH;
 		gbc_panelButtons.gridx = 1;

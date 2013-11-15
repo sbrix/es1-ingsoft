@@ -48,8 +48,10 @@ public class FrameAggiungiUtente extends JFrame {
 		GridBagLayout gbl_contentPane = new GridBagLayout();
 		gbl_contentPane.columnWidths = new int[] { 0, 0, 0 };
 		gbl_contentPane.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0 };
-		gbl_contentPane.columnWeights = new double[] { 0.0, 1.0, Double.MIN_VALUE };
-		gbl_contentPane.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
+		gbl_contentPane.columnWeights = new double[] { 0.0, 1.0,
+				Double.MIN_VALUE };
+		gbl_contentPane.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0,
+				0.0, Double.MIN_VALUE };
 		contentPane.setLayout(gbl_contentPane);
 
 		JLabel lblNome = new JLabel("Nome:");
@@ -146,9 +148,10 @@ public class FrameAggiungiUtente extends JFrame {
 			@SuppressWarnings("unchecked")
 			public void actionPerformed(ActionEvent arg0) {
 				// aggiungi dati alla lista utenti
-				Utente utente = new Utente(textFieldNome.getText().trim(), textFieldCognome
-						.getText().trim(), textFieldUsername.getText().trim(), new String(
-						passwordField.getPassword()).trim(), ag);
+				Utente utente = new Utente(textFieldNome.getText().trim(),
+						textFieldCognome.getText().trim(), textFieldUsername
+								.getText().trim(), new String(passwordField
+								.getPassword()).trim(), ag);
 				switch (choiceUserType.getSelectedItem()) {
 				case "Cliente": {
 					utente.setUserType(Utente.CLIENTE);
@@ -171,7 +174,8 @@ public class FrameAggiungiUtente extends JFrame {
 				list.setListData(ag.listaUtenti.toArray());
 				panel.revalidate();
 				panel.repaint();
-				JOptionPane.showMessageDialog(null, new JLabel("Utente inserito"));
+				JOptionPane.showMessageDialog(null, new JLabel(
+						"Utente inserito"));
 				setVisible(false);
 
 			}

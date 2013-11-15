@@ -5,8 +5,8 @@ import java.io.Serializable;
 public class Utente implements Serializable {
 	@Override
 	public String toString() {
-		return "ID=" + id + ", Nome=" + nome + ", Cognome=" + cognome + ", Username=" + userName
-				+ ", Tipo=" + userTypeToString();
+		return "ID=" + id + ", Nome=" + nome + ", Cognome=" + cognome
+				+ ", Username=" + userName + ", Tipo=" + userTypeToString();
 	}
 
 	public static final int ADMIN = 0;

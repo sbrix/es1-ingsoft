@@ -41,7 +41,8 @@ public class LoginWindow {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());                 
+					UIManager.setLookAndFeel(UIManager
+							.getSystemLookAndFeelClassName());
 					LoginWindow window = new LoginWindow();
 					window.frmLogin.setVisible(true);
 				} catch (Exception e) {
@@ -68,23 +69,25 @@ public class LoginWindow {
 		if (!agenzia.listaUtenti.isEmpty()) {
 			for (Utente i : agenzia.listaUtenti) {
 				if (i.userName.equals(name)
-						&& agenzia.passwordEncryptor.checkPassword(pwd.trim(), i.password)) {
+						&& agenzia.passwordEncryptor.checkPassword(pwd.trim(),
+								i.password)) {
 					// vai schermata clienti
 
 					switch (i.getUserType()) {
 					case Utente.CLIENTE: {
 						userFound = true;
-						VistaCliente frameCliente = new VistaCliente(i.getUserType(), i.getId(),
-								agenzia);
-						
+						VistaCliente frameCliente = new VistaCliente(
+								i.getUserType(), i.getId(), agenzia);
+
 						frameCliente.setVisible(true);
 						frmLogin.setVisible(false);
 						break;
 					}
 					case Utente.OPERATORE: {
 						userFound = true;
-						VistaOperatore frameOp = new VistaOperatore(i.getUserType(), i.getId(), agenzia);
-						
+						VistaOperatore frameOp = new VistaOperatore(
+								i.getUserType(), i.getId(), agenzia);
+
 						frameOp.setVisible(true);
 						frmLogin.setVisible(false);
 						break;
@@ -92,8 +95,9 @@ public class LoginWindow {
 					}
 					case Utente.ADMIN: {
 						userFound = true;
-						VistaAdmin frameAdmin = new VistaAdmin(i.getUserType(), i.getId(), agenzia);
-						
+						VistaAdmin frameAdmin = new VistaAdmin(i.getUserType(),
+								i.getId(), agenzia);
+
 						frameAdmin.setVisible(true);
 						frmLogin.setVisible(false);
 
@@ -103,9 +107,10 @@ public class LoginWindow {
 				}
 			}
 		}
-	
+
 		if (!userFound) {
-			JOptionPane.showMessageDialog(null, new JLabel("Password o nome utente non valido"));
+			JOptionPane.showMessageDialog(null, new JLabel(
+					"Password o nome utente non valido"));
 			textFieldUsername.setText(null);
 			passwordField.setText(null);
 		}
@@ -133,7 +138,8 @@ public class LoginWindow {
 		gridBagLayout.columnWidths = new int[] { 0, 0, 0 };
 		gridBagLayout.rowHeights = new int[] { 0, 0, 0, 0 };
 		gridBagLayout.columnWeights = new double[] { 0.0, 1.0, Double.MIN_VALUE };
-		gridBagLayout.rowWeights = new double[] { 1.0, 1.0, 1.0, Double.MIN_VALUE };
+		gridBagLayout.rowWeights = new double[] { 1.0, 1.0, 1.0,
+				Double.MIN_VALUE };
 		frmLogin.getContentPane().setLayout(gridBagLayout);
 
 		JLabel lblUsername = new JLabel("Username:");
@@ -191,8 +197,9 @@ public class LoginWindow {
 		gbc_btnLogin.gridy = 2;
 		frmLogin.getContentPane().add(btnLogin, gbc_btnLogin);
 		frmLogin.getContentPane().setFocusTraversalPolicy(
-				new FocusTraversalOnArray(new Component[] { lblUsername, textFieldUsername,
-						lblPassword, passwordField, btnLogin }));
+				new FocusTraversalOnArray(
+						new Component[] { lblUsername, textFieldUsername,
+								lblPassword, passwordField, btnLogin }));
 	}
 
 }

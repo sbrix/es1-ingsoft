@@ -31,10 +31,12 @@ public class Base64Service {
 		// process 3 bytes at a time, churning out 4 output bytes
 		// worry about CRLF insertions later
 		for (int i = 0; i < stringArray.length; i += 3) {
-			int j = ((stringArray[i] & 0xff) << 16) + ((stringArray[i + 1] & 0xff) << 8)
+			int j = ((stringArray[i] & 0xff) << 16)
+					+ ((stringArray[i + 1] & 0xff) << 8)
 					+ (stringArray[i + 2] & 0xff);
 			encoded = encoded + base64code.charAt((j >> 18) & 0x3f)
-					+ base64code.charAt((j >> 12) & 0x3f) + base64code.charAt((j >> 6) & 0x3f)
+					+ base64code.charAt((j >> 12) & 0x3f)
+					+ base64code.charAt((j >> 6) & 0x3f)
 					+ base64code.charAt(j & 0x3f);
 		}
 		// replace encoded padding nulls with "="
@@ -48,7 +50,8 @@ public class Base64Service {
 		String lines = "";
 		for (int i = 0; i < string.length(); i += splitLinesAt) {
 
-			lines += string.substring(i, Math.min(string.length(), i + splitLinesAt));
+			lines += string.substring(i,
+					Math.min(string.length(), i + splitLinesAt));
 			lines += "\r\n";
 
 		}

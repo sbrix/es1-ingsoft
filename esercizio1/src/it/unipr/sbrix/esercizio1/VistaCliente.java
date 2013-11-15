@@ -13,12 +13,10 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
 
 public class VistaCliente extends JFrame {
@@ -64,8 +62,10 @@ public class VistaCliente extends JFrame {
 		GridBagLayout gbl_contentPane = new GridBagLayout();
 		gbl_contentPane.columnWidths = new int[] { 0, 0, 0 };
 		gbl_contentPane.rowHeights = new int[] { 0, 0, 0, 0 };
-		gbl_contentPane.columnWeights = new double[] { 0.0, 1.0, Double.MIN_VALUE };
-		gbl_contentPane.rowWeights = new double[] { 0.0, 0.0, 1.0, Double.MIN_VALUE };
+		gbl_contentPane.columnWeights = new double[] { 0.0, 1.0,
+				Double.MIN_VALUE };
+		gbl_contentPane.rowWeights = new double[] { 0.0, 0.0, 1.0,
+				Double.MIN_VALUE };
 		contentPane.setLayout(gbl_contentPane);
 
 		JLabel lblModalit = new JLabel("Modalit\u00E0:");

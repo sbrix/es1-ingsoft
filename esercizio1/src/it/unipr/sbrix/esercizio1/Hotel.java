@@ -5,8 +5,8 @@ import java.io.Serializable;
 public class Hotel implements Serializable {
 	@Override
 	public String toString() {
-		return "Hotel [nome=" + nome + ", via=" + via + ", citta=" + citta + ", nazione=" + nazione
-				+ "]";
+		return "Hotel [nome=" + nome + ", via=" + via + ", citta=" + citta
+				+ ", nazione=" + nazione + "]";
 	}
 
 	/**

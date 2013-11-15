@@ -48,7 +48,7 @@ public class VistaGestioneUtenti extends JPanel implements ActionListener {
 	public VistaGestioneUtenti(final Agenzia agenzia) {
 		ag = agenzia;
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[] {780, 70, 0};
+		gridBagLayout.columnWidths = new int[] { 780, 70, 0 };
 		gridBagLayout.columnWeights = new double[] { 1.0, 0.0, Double.MIN_VALUE };
 		gridBagLayout.rowWeights = new double[] { 1.0 };
 		setLayout(gridBagLayout);
@@ -63,15 +63,17 @@ public class VistaGestioneUtenti extends JPanel implements ActionListener {
 
 		JLabel lblGestioneUtenti = new JLabel("Gestione Utenti");
 		panelList.add(lblGestioneUtenti);
-		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollPane
+				.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPane
+				.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
 		panelList.add(scrollPane);
 
 		list = new JList(ag.listaUtenti.toArray());
-		
+
 		scrollPane.setViewportView(list);
-		scrollPane.setMinimumSize(new Dimension(780,500));
+		scrollPane.setMinimumSize(new Dimension(780, 500));
 		list.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent arg0) {
 
@@ -108,7 +110,8 @@ public class VistaGestioneUtenti extends JPanel implements ActionListener {
 		// TODO Auto-generated method stub
 		if (e.getSource() == btnAggiungi) {
 			// aggiunta di un utente alla lista utenti
-			JFrame frameAggiungiUser = new FrameAggiungiUtente(this.ag, panelList, list);
+			JFrame frameAggiungiUser = new FrameAggiungiUtente(this.ag,
+					panelList, list);
 
 			frameAggiungiUser.setVisible(true);
 		}

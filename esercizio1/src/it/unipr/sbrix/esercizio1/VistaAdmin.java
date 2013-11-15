@@ -5,7 +5,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 
-import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
@@ -27,23 +26,19 @@ public class VistaAdmin extends VistaOperatore {
 	public VistaAdmin(int ut, int id, Agenzia ag) {
 		super(ut, id, ag);
 		lblShowmode.setText("Amministratore");
-		
+
 		JButton btnGestioneUtenti = new JButton("Gestione Utenti");
 		panelOperazioni.add(btnGestioneUtenti);
-		
-		
-		agenzia = ag;
-		
 
-		
-		
+		agenzia = ag;
+
 		this.revalidate();
 		this.repaint();
 		GridBagConstraints gbc_btnGestioneUtenti = new GridBagConstraints();
 		gbc_btnGestioneUtenti.insets = new Insets(0, 0, 0, 5);
 		gbc_btnGestioneUtenti.gridx = 0;
 		gbc_btnGestioneUtenti.gridy = 2;
-		gbc_btnGestioneUtenti.fill=gbc_btnGestioneUtenti.HORIZONTAL;
+		gbc_btnGestioneUtenti.fill = gbc_btnGestioneUtenti.HORIZONTAL;
 		btnGestioneUtenti.addActionListener(new ActionListener() {
 
 			@Override
